@@ -1,0 +1,118 @@
+body {
+    background-color: rgba(93, 155, 155, 0.45);
+    font-family: "Mohave", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 7%;
+    width: 100%;
+    background-color: white;
+}
+
+.titulo1 {
+    color: rgba(93, 155, 155, 0.95);
+    font-size: 30px;
+    font-weight: 700;
+    filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.05));
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.66);
+    margin: 3% 0 0 27.22%;
+    width: 45%;
+    height: 70%;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.container h1 {
+    letter-spacing: 4px;
+    color: rgba(0, 0, 0, 0.72);
+}
+
+.container form {
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    margin-top: 20%;
+}
+
+
+#usuario {
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px 50px;
+    height: 22px;
+    width: 45%;
+    margin: 0 0 0 25%;
+    font-size: larger;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+#lb-usuario {
+    position: absolute;
+    margin: 1% 0 0 13.5%;
+    font-size: larger;
+}
+
+#senha {
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px 50px;
+    height: 22px;
+    width: 45%;
+    margin: 20px 0 0 25%;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+#icon-eye {
+    position: absolute;
+    margin: 10% 0 0 78%;
+    color: black;
+}
+
+#lb-pass {
+    position: absolute;
+    margin: 9.5% 0 0 15%;
+    font-size: larger;
+}
+
+.btn-entrar {
+    padding: 2% 4% 5% 4%;
+    height: 2rem;
+    border-radius: 10px;
+    background-color: rgba(93, 155, 155, 0.45);
+    font-size: larger;
+    font-weight: bolder;
+    border-style: none;
+    filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.1));
+    position: absolute;
+    margin: 23% 0 0 43%;
+}
+
+.btn-entrar:hover {
+    color: rgba(0, 0, 0, 0.72);
+    background-color:white;
+    border: 0.2px solid rgba(0, 0, 0, 0.15);;
+}
+
+#frg-pass {
+    text-decoration: none;
+    color: black;
+    margin: 25% 0 0 39.5%;
+}
+
+#frg-pass:hover {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.40);
+}

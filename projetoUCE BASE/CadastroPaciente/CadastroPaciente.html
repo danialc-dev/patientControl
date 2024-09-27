@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="CadastroPacienteStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- BASE DO SISTEMA -->
+
+    <header class="header">
+        <a href="" id="help"><span class="material-icons">help</span></a>
+        <h2 class="titulo1">Patient Control </h2>
+    </header>
+    <div class="barraLateral">
+        <a href="" class="profileBackground">
+            <p class="nome">
+                <img class="profilePic" src="/img/placeholder.jpg" alt="perfil">
+                <p class="">Tamiris</p>
+            </p>
+        </a>
+
+        <ul class="navegacao">
+
+            <li> <a class="navegacao1" href=""> Cadastro Paciente </a> </li>
+            <li> <a class="navegacao2" href=""> Relatórios </a> </li>
+            <li> <a class="navegacao3" href=""> Consultas </a> </li>
+        </ul>
+
+    </div>
+
+    <div class="principal">
+        <h1 class="titulo">Cadastro Paciente</h1>
+
+        <div id="img-perfil">
+            <img src="/img/user-image.png" alt="" id="img-img">
+        </div> 
+        <hr>
+
+        <div class="container-cadastro">
+
+            <form action="" class="form-cadastro">
+
+                <label for="nome" id="label">Nome: <input type="text" id="input-nome" name="nome"></label>
+
+                <!-- imagem do perfil -->
+
+
+                <br>
+                <label for="email" id="label">Email: <input type="text" id="input-nome" name="email"></label> <br>
+                <div class="linha-insert">
+                    <label for="dt-nasc" id="label">Data de Nascimento: <input type="date" id="input-inf" name="dt-nasc" style="width: 40%;"></label>
+                    <label for="cpf" id="label">CPF: <input type="number" id="input-inf" name="cpf" style="width: 80%;"></label>
+                    <label for="telefone" id="label">Telefone: <input type="tel" id="input-inf"name="telefone" style="width: 70%;"></label><br>
+
+                </div>
+                <br>
+                <div class="text-area-container">
+                <p id="text-one">HPP:<textarea name="hpp" id="diag" rows="6" cols="99" style="width: 90%;"></textarea></p>
+                <br>
+                <p id="text-one">HMA:<textarea name="hma" id="diag" rows="6" cols="99" style="width: 90%;"></textarea></p>
+                <br>
+                <p id="text-one">Diagnostico <br> Clinico:<textarea name="diag-clinic" id="diag2" rows="6" cols="99" style="width: 86.5%;"></textarea></p>
+                <br>
+                <p id="text-one">Diagnostico <br> Fisioterapeutico:<textarea name="diag-fisio" id="diag2" rows="6" cols="99" style="width: 83%;"></textarea></p>
+                <br>
+                <p id="text-one">Observações:<textarea name="obs" id="diag2" rows="6" cols="99" style="width: 85.5%;"></textarea></p>
+                <br>
+            
+                <div class="btn-box">
+                    <p id="text-one">Medicamentos:<textarea name="medicines" id="diag2" rows="6" cols="60"></textarea></p>
+                    <div class="btn-trio">
+                        <button class="bnt-anex"> <span class="material-icons">add_link</span> Anexar Arquivos</button> 
+                        <div class="btn-alinha">
+                        <button class="btn-cancel"> Cancelar </button>
+                        <button class="btn-save">Salvar</button>
+                    </div>
+                    </div>
+                  
+                </div>
+                
+            </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

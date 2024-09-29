@@ -10,6 +10,14 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+
+// Rotas Agendamento Consulta
+app.get('/agendamentoConsulta', (req, res) => {
+    res.render('agendamentoConsulta/agendamentoConsulta');  // Renderiza a página de login
+});
+
+
+
 // Função para criar uma pessoa fictícia
 function criarPessoaFicticia() {
     // Verifica se o e-mail já existe no banco de dados

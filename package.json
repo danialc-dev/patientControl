@@ -7,7 +7,7 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "\"# patientControl\"",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "ejs": "^3.1.10",

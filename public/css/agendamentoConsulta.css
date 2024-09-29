@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* BASE DO SISTEMA */
+
+header {
+    width: 80%;
+    margin: 0 0 2% 15%;
+    filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.05));
+
+}
+
+body {
+    font-family: "Mohave", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    display: flex;
+    /* igual a altura do rodapé */
+}
+
+#help {
+    position: absolute;
+    margin: 2vh 0 50% 103%;
+    color: black;
+}
+
+#help:hover {
+    color: rgba(93, 155, 155, 0.65);
+}
+
+.titulo1 {
+    color: rgba(93, 155, 155, 0.45);
+    margin:1% 0 0 48.5%;
+    text-wrap: nowrap;
+}
+
+.barraLateral {
+
+    position: absolute;
+    box-sizing: border-box;
+    padding: 9.5%;
+    height: 160%;
+    left: 0px;
+    top: 0px;
+    border-radius: 0px 5px 5px 0px;
+
+    background-color: rgba(93, 155, 155, 0.45);
+
+}
+
+
+/* perfil canto esquedo sup. */
+.profileBackground {
+    display: flex;
+    position: absolute;
+    width: 90%;
+    height: 5%;
+    left: 14px;
+    top: 21px;
+    border-radius: 50px;
+
+    background-color: white;
+
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+
+    align-items: center;
+}
+
+.nome {
+    margin-left: 30%;
+    margin-top: 13px;
+}
+
+.profilePic {
+    /* Ellipse 1 */
+
+    position: absolute;
+    width: 20%;
+    height: 85%;
+    left: 2.5%;
+    top: 7%;
+
+    background: url(.png);
+
+    border-radius: 100%;
+}
+
+
+.navegacao {
+    /* cadastroPaciente */
+    list-style: none;
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 10px;
+    top: 130px;
+    font-size: large;
+
+}
+
+.navegacao1 {
+    text-decoration: none;
+    color: black;
+}
+
+
+.navegacao1:hover {
+    color: white;
+}
+
+.navegacao2 {
+    text-decoration: none;
+    color: black;
+}
+
+
+.navegacao2:hover {
+    color: white;
+}
+
+.navegacao3 {
+    text-decoration: none;
+    color: black;
+}
+
+
+.navegacao3:hover {
+    color: white;
+}
+
+/* body principal */
+
+.principal {
+    /* Body */
+    width: 79.5%;
+    height: 154%;
+    position: absolute;
+    margin: 3% 0 0 20%;
+    background-color: rgba(93, 155, 155, 0.45);
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+}
+
+
+.titulo {
+    color: black;
+    margin: 2% 0 0 39%;
+}

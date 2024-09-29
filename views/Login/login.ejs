@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Control - Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<header id="cabecalho">
+    <h1>Patient Control</h1>
+</header>
+
+<div class="container">
+    <% if (typeof error !== 'undefined') { %>
+        <div style="color: red;"><%= error %></div>
+    <% } %>
+
+    <form action="/login" method="POST" id="form-login">
+        <h1 id="titulo-login">LOGIN</h1>
+
+        <div class="main_field_login">
+            <div class="field_login">
+                <label for="email" id="lb-email">Email:
+                    <input type="text" id="email" name="email" required>
+                </label>
+            </div>
+
+            <div class="field_login">
+                <label for="senha" id="lb-pass">Senha:
+                    <input type="password" id="senha" name="senha" required>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="button-entrar">Entrar</button>
+        <a href="#" id="forgot-password">Esqueci minha senha</a>
+    </form>
+</div>
+</body>
+</html>

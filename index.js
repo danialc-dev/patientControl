@@ -80,6 +80,10 @@ app.get('/dashboard', (req, res) => {
     res.send('Bem-vindo ao dashboard!');
 });
 
+app.get('/base', (req, res) => {
+    res.render('base/base')
+})
+
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000...');

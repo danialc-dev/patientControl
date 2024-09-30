@@ -1,156 +1,162 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-/* BASE DO SISTEMA */
-
-header {
-    width: 80%;
-    margin: 0 0 2% 15%;
-    filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.05));
-
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
-    font-family: "Mohave", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(93, 155, 155, 0.75);
+    color: #333;
     display: flex;
-    /* igual a altura do rodapé */
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#header h1 {
+    color: rgba(93, 155, 155, 0.85);
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 #help {
-    position: absolute;
-    margin: 2vh 0 50% 103%;
-    color: black;
-}
-
-#help:hover {
-    color: rgba(93, 155, 155, 0.65);
-}
-
-.titulo1 {
-    color: rgba(93, 155, 155, 0.45);
-    margin:1% 0 0 48.5%;
-    text-wrap: nowrap;
-}
-
-.barraLateral {
-
-    position: absolute;
-    box-sizing: border-box;
-    padding: 9.5%;
-    height: 160%;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px 5px 5px 0px;
-
-    background-color: rgba(93, 155, 155, 0.45);
-
-}
-
-
-/* perfil canto esquedo sup. */
-.profileBackground {
-    display: flex;
-    position: absolute;
-    width: 90%;
-    height: 5%;
-    left: 14px;
-    top: 21px;
-    border-radius: 50px;
-
-    background-color: white;
-
-    font-size: 20px;
+    color: rgba(93, 155, 155, 0.75);
+    font-size: 1.8rem;
     text-decoration: none;
-    color: black;
-
+    display: flex;
     align-items: center;
 }
 
-.nome {
-    margin-left: 30%;
-    margin-top: 13px;
+#help:hover {
+    color: rgba(46, 95, 95, 0.9);
 }
 
-.profilePic {
-    /* Ellipse 1 */
-
-    position: absolute;
-    width: 20%;
-    height: 85%;
-    left: 2.5%;
-    top: 7%;
-
-    background: url(.png);
-
-    border-radius: 100%;
-}
-
-
-.navegacao {
-    /* cadastroPacientes */
-    list-style: none;
-    position: absolute;
-    width: 150px;
-    height: 50px;
-    left: 10px;
-    top: 130px;
-    font-size: large;
-
-}
-
-.navegacao1 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao1:hover {
-    color: white;
-}
-
-.navegacao2 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao2:hover {
-    color: white;
-}
-
-.navegacao3 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao3:hover {
-    color: white;
-}
-
-/* body principal */
-
-.principal {
-    /* Body */
-    width: 79.5%;
-    height: 154%;
-    position: absolute;
-    margin: 3% 0 0 20%;
-    background-color: rgba(93, 155, 155, 0.45);
-    border-radius: 5px;
+.layout {
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-
+    margin-top: 80px;
+    height: calc(100vh - 80px);
 }
 
+#sidebar {
+    background-color: white;
+    width: 250px;
+    padding: 2rem 1.5rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.titulo {
-    color: black;
-    margin: 2% 0 0 39%;
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    color: rgba(93, 155, 155, 0.85);
+    font-weight: 600;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: rgba(93, 155, 155, 0.85);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: rgba(93, 155, 155, 0.1);
+    color: rgba(46, 95, 95, 0.9);
+}
+
+#main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    overflow-y: auto;
+}
+
+.page-title {
+    font-size: 2rem;
+    color: rgba(93, 155, 155, 0.85);
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 200px;
+        padding: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+
+    #main-content {
+        padding: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #sidebar {
+        width: 60vw;
+        padding: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-name {
+        font-size: 1rem;
+    }
+
+    #main-content {
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
 }

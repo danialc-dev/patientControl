@@ -6,7 +6,7 @@
 /* BASE DO SISTEMA */
 
 header {
-    width: 80%;
+    width: 80vw;
     margin: 0 0 2% 15%;
     filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.05));
 
@@ -23,7 +23,7 @@ body {
 
 #help {
     position: absolute;
-    margin: 2vh 0 50% 103%;
+    margin: 2vh 0 50% 150rem;
     color: black;
 }
 
@@ -33,8 +33,8 @@ body {
 
 .titulo1 {
     color: rgba(93, 155, 155, 0.45);
-    margin:1% 0 0 48.5%;
-    text-wrap: nowrap;
+    padding: 0.5rem;
+    margin-left: 35rem;
 }
 
 .barraLateral {
@@ -85,7 +85,7 @@ body {
     left: 2.5%;
     top: 7%;
 
-    background: url(.png);
+    background: url(/public/img/placeholder.jpg);
 
     border-radius: 100%;
 }
@@ -152,5 +152,6 @@ body {
 
 .titulo {
     color: black;
-    margin: 2% 0 0 39%;
+    padding: 2rem;
+    margin-left: 24rem;
 }

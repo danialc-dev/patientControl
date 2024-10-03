@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base</title>
+    <title>Agendamento de Consulta</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="/css/agendamentoConsulta.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
     <!-- BASE DO SISTEMA -->
 
     <header class="header">
@@ -22,7 +22,7 @@
     <div class="barraLateral">
         <a href="" class="profileBackground">
             <p class="nome">    
-                <img class="profilePic" src="/public/img/placeholder.jpg" alt="perfil">
+                <img class="profilePic" alt="perfil">
                 <p class="">Tamiris</p>
             </p>
         </a>
@@ -37,7 +37,29 @@
     </div>
 
     <div class="principal">
-        <h1 class="titulo">Titulo da Pagina</h1>
+
+        <form action="/agendarConsulta" method="POST" id="form-agendamento">
+            <h1 class="titulo">Agendamento de Consulta</h1>
+
+            <div class="main_field_login">
+                <div class="field_login">
+                    <label for="email" id="lb-email">Email:
+                        <input type="text" id="email" name="email" required>
+                    </label>
+                </div>
+
+                <div class="field_login">
+                    <label for="senha" id="lb-pass">Senha:
+                        <input type="password" id="senha" name="senha" required>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="button-entrar">Entrar</button>
+            <a href="#" id="forgot-password">Esqueci minha senha</a>
+        </form>
+
+
     </div>
 
    <!-- FIM DA BASE DO SISTEMA -->

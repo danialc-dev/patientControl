@@ -5,33 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Control</title>
     <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header id="header">
-        <h1>Patient Control</h1>
-    </header>
+<header id="header">
+    <h1>Patient Control</h1>
+</header>
 
-    <div class="layout">
-        <aside id="sidebar">
-            <div class="profile">
-                <img src="/img/img.png" alt="Foto de Perfil" class="profile-pic">
-                <p class="profile-name">Leandro</p>
+<div class="layout">
+    <aside id="sidebar">
+        <div class="profile">
+            <img src="/img/img.png" alt="Foto de Perfil" class="profile-pic">
+            <p class="profile-name">Leandro</p>
+        </div>
+
+        <nav class="nav">
+            <a href="#" class="nav-link">Cadastro Paciente</a>
+            <a href="#" class="nav-link">Relatórios</a>
+            <a href="#" class="nav-link">Consultas</a>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <section class="daily-summary">
+            <h2>Resumo do dia</h2>
+            <div class="appointments">
+                <div class="appointment">
+                    <h3>09:00</h3>
+                    <p>João Valente</p>
+                    <p><span class="red">Liberação com dry needling e ventosa terapia</span></p>
+                    <p>Valor do atendimento: <strong>R$150,00</strong></p>
+                </div>
+                <div class="appointment">
+                    <h3>13:00</h3>
+                </div>
+                <div class="appointment">
+                    <h3>15:00</h3>
+                </div>
             </div>
+        </section>
 
-            <nav class="nav">
-                <a href="#" class="nav-link">Cadastro Paciente</a>
-                <a href="#" class="nav-link">Relatórios</a>
-                <a href="#" class="nav-link">Consultas</a>
-            </nav>
-        </aside>
+        <section class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">←</button>
+                <h2 id="month-year"></h2>
+                <button id="next-month">→</button>
+            </div>
+            <div class="weekdays" id="weekdays"></div>
+            <div class="month" id="calendar-days"></div>
+        </section>
 
-        <!-- Conteúdo Principal -->
-        <main id="main-content">
-            <h2 class="page-title">Título da Página</h2>
-            <p>Conteúdo principal da página vai aqui...</p>
-        </main>
-    </div>
+        <div id="appointment-popup" class="popup hidden">
+            <div class="popup-content">
+                <span class="close-popup">&times;</span>
+                <h2>Agendar Atendimento</h2>
+                <form id="appointment-form">
+                    <label for="appointment-date">Data:</label>
+                    <input type="text" id="appointment-date" name="date" readonly>
 
+                    <label for="appointment-time">Horário:</label>
+                    <input type="time" id="appointment-time" name="time" required>
+
+                    <label for="appointment-name">Nome do Paciente:</label>
+                    <input type="text" id="appointment-name" name="name" required>
+
+                    <label for="appointment-service">Serviço:</label>
+                    <input type="text" id="appointment-service" name="service" required>
+
+                    <button type="submit">Agendar</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="/js/base.js"></script>
 </body>
 </html>

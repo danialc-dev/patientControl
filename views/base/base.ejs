@@ -16,7 +16,7 @@
 <div class="layout">
     <aside id="sidebar">
         <div class="profile">
-            <img src="/img/img.png" alt="Foto de Perfil" class="profile-pic">
+            <img src="/img/img.png" alt="Foto de perfil de Leandro" class="profile-pic">
             <p class="profile-name">Leandro</p>
         </div>
 
@@ -56,6 +56,7 @@
             <div class="month" id="calendar-days"></div>
         </section>
 
+        <!-- Pop-up de Novo Agendamento -->
         <div id="appointment-popup" class="popup hidden">
             <div class="popup-content">
                 <span class="close-popup">&times;</span>
@@ -75,6 +76,25 @@
 
                     <button type="submit">Agendar</button>
                 </form>
+            </div>
+        </div>
+
+        <!-- Pop-up de Ver Agendamentos -->
+        <div id="view-appointments-popup" class="popup hidden">
+            <div class="popup-content large-popup">
+                <span class="close-popup">&times;</span>
+                <h2>Agendamentos do Dia</h2>
+                <div id="appointments-list"></div>
+            </div>
+        </div>
+
+        <!-- Pop-up Inicial de Escolha -->
+        <div id="options-popup" class="popup hidden">
+            <div class="popup-content">
+                <span class="close-popup">&times;</span>
+                <h2>Escolha uma Opção</h2>
+                <button id="view-appointments-button">Ver Agendamentos</button>
+                <button id="new-appointment-button">Novo Agendamento</button>
             </div>
         </div>
 

@@ -1,46 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <title>Patient Control</title>
     <link rel="stylesheet" href="/css/base.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <!-- BASE DO SISTEMA -->
 
-    <header class="header">
-        <a href="" id="help"><span class="material-icons" >help</span></a>
-        <h2 class="titulo1">Patient Control </h2>
-        
+    <header id="header">
+        <h1>Patient Control</h1>
     </header>
-    <div class="barraLateral">
-        <a href="" class="profileBackground">
-            <p class="nome">    
-                <img class="profilePic" src="/public/img/placeholder.jpg" alt="perfil">
-                <p class="">Tamiris</p>
-            </p>
-        </a>
-        
-        <ul class="navegacao">
-            
-            <li> <a class="navegacao1" href=""> Cadastro Paciente </a> </li>
-            <li> <a class="navegacao2" href=""> Relatórios </a> </li>
-            <li> <a class="navegacao3" href=""> Consultas </a> </li>
-        </ul>
-     
-    </div>
 
-    <div class="principal">
-        <h1 class="titulo">Titulo da Pagina</h1>
-    </div>
+    <div class="layout">
+        <aside id="sidebar">
+            <div class="profile">
+                <img src="/img/img.png" alt="Foto de Perfil" class="profile-pic">
+                <p class="profile-name">Leandro</p>
+            </div>
 
-   <!-- FIM DA BASE DO SISTEMA -->
+            <nav class="nav">
+                <a href="#" class="nav-link">Cadastro Paciente</a>
+                <a href="#" class="nav-link">Relatórios</a>
+                <a href="#" class="nav-link">Consultas</a>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main id="main-content">
+            <h2 class="page-title">Título da Página</h2>
+            <p>Conteúdo principal da página vai aqui...</p>
+        </main>
+    </div>
 
 </body>
 </html>

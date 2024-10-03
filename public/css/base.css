@@ -286,6 +286,45 @@ body {
     display: none;
 }
 
+.field_login {
+    position: relative;  /* Certifica que a caixa de sugestões será posicionada corretamente */
+}
+
+.suggestions-box {
+    position: absolute;
+    top: 100%;  /* Posiciona logo abaixo do input */
+    left: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 1000;
+    width: 100%;  /* Define a largura da caixa de sugestões igual à do input */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;  /* Inicialmente oculta */
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.suggestions-box div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions-box div:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
 @media (max-width: 1024px) {
     .layout {
         flex-direction: column;

@@ -61,21 +61,27 @@
             <div class="popup-content">
                 <span class="close-popup">&times;</span>
                 <h2>Agendar Atendimento</h2>
-                <form id="appointment-form">
-                    <label for="appointment-date">Data:</label>
-                    <input type="text" id="appointment-date" name="date" readonly>
+                    <form id="appointment-form" action="/agendamentos" method="POST">
+                        <label for="appointment-date">Data:</label>
+                        <input type="text" id="appointment-date" name="date" readonly>
 
-                    <label for="appointment-time">Horário:</label>
-                    <input type="time" id="appointment-time" name="time" required>
+                        <label for="appointment-time">Horário:</label>
+                        <input type="time" id="appointment-time" name="time" required>
 
-                    <label for="appointment-name">Nome do Paciente:</label>
-                    <input type="text" id="appointment-name" name="name" required>
+                        <div class="field_login">
+                            <label for="appointment-name">Nome do Paciente:</label>
+                            <input type="text" id="appointment-name" name="name" autocomplete="off">
+                            <div id="name-suggestions" class="suggestions-box"></div>
+                        </div>
 
-                    <label for="appointment-service">Serviço:</label>
-                    <input type="text" id="appointment-service" name="service" required>
+                        <div class="field_login">
+                            <label for="appointment-service">Serviço:</label>
+                            <input type="text" id="appointment-service" name="service" autocomplete="off">
+                            <div id="service-suggestions" class="suggestions-box"></div>
+                        </div>
 
-                    <button type="submit">Agendar</button>
-                </form>
+                        <button type="submit">Agendar</button>
+                    </form>
             </div>
         </div>
 

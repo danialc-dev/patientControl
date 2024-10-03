@@ -73,7 +73,7 @@ app.post('/login', (req, res) => {
         }
 
         // Se o login for bem-sucedido, redireciona para o dashboard (ou outra página protegida)
-        return res.redirect('/dashboard');
+        return res.redirect('/base');
     }).catch(err => {
         console.error('Erro durante o login:', err);
         res.render('Login/login', { error: 'Ocorreu um erro durante o login' });

@@ -1,7 +1,11 @@
+const { Op } = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const Pessoa = require('./database/pessoa');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 const app = express();
 
 // Configurações do Express
@@ -9,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
 
 // Função para criar uma pessoa fictícia
 function criarPessoaFicticia() {
@@ -84,7 +89,100 @@ app.get('/base', (req, res) => {
     res.render('base/base')
 })
 
+// Rota para solicitar a redefinição de senha
+app.get('/esqueci-senha', (req, res) => {
+    res.render('esqueci-senha');
+});
+
+// Rota para enviar o link de redefinição
+app.post('/esqueci-senha', (req, res) => {
+    const { email } = req.body;
+
+    Pessoa.findOne({ where: { email: email } }).then(pessoa => {
+        if (!pessoa) {
+            return res.render('esqueci-senha', { error: 'Email não encontrado' });
+        }
+
+        // Gerar token
+        const token = crypto.randomBytes(6).toString('hex');
+
+        // Aqui você deve salvar o token e a expiração em um campo no banco de dados da pessoa
+        // Por exemplo: pessoa.token = token e pessoa.tokenExpires = Date.now() + 3600000 (1 hora)
+        pessoa.update({ token, tokenExpires: Date.now() + 3600000 });
+
+        // Enviar e-mail com o link de redefinição
+        const link = `http://localhost:3000/redefinir-senha/${token}`;
+        const mailOptions = {
+            from: 'viniciusnt05@gmail.com',
+            to: email,
+            subject: 'Redefinição de senha',
+            text: `Clique no link para redefinir sua senha: ${link}`
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Email enviado: ' + info.response);
+            res.render('esqueci-senha', { success: 'Email enviado!' });
+        });
+    }).catch(err => {
+        console.error('Erro ao enviar e-mail:', err);
+        res.render('esqueci-senha', { error: 'Ocorreu um erro' });
+    });
+});
+
+// Rota para exibir o formulário de redefinição de senha
+app.get('/redefinir-senha/:token', (req, res) => {
+    const { token } = req.params;
+
+    Pessoa.findOne({ where: { token: token, tokenExpires: { [Op.gt]: Date.now() } } }).then(pessoa => {
+        if (!pessoa) {
+            return res.render('redefinir-senha', { error: 'Token inválido ou expirado' });
+        }
+
+        // Passar o token para a view
+        res.render('redefinir-senha', { token });
+    }).catch(err => {
+        console.error('Erro ao verificar token:', err);
+        res.render('redefinir-senha', { error: 'Ocorreu um erro ao verificar o token.' });
+    });
+});
+
+
+
+// Rota para atualizar a senha
+app.post('/redefinir-senha', (req, res) => {
+    const { token, senha } = req.body;
+
+    Pessoa.findOne({ where: { token: token, tokenExpires: { [Op.gt]: Date.now() } } }).then(pessoa => {
+        if (!pessoa) {
+            return res.render('redefinir-senha', { error: 'Token inválido ou expirado' });
+        }
+
+        const salt = bcrypt.genSaltSync(10);
+        const hashedPassword = bcrypt.hashSync(senha, salt);
+
+        // Atualizar a senha e limpar o token
+        pessoa.update({ senha: hashedPassword, token: null, tokenExpires: null });
+
+        res.redirect('/login');
+    }).catch(err => {
+        console.error('Erro ao redefinir senha:', err);
+        res.render('redefinir-senha', { error: 'Ocorreu um erro' });
+    });
+});
+
+// Configurações do Nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // ou outro serviço de e-mail
+    auth: {
+        user: process.env.EMAIL, // seu e-mail
+        pass: process.env.EMAIL_PASSWORD // sua senha ou senha de aplicativo
+    }
+});
+
 // Inicia o servidor na porta 3000
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log('Servidor rodando na porta 3000...');
 });

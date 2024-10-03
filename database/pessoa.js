@@ -28,6 +28,14 @@ const Pessoa = connection.define('pessoa', {
     telefone: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    token: {  // Novo campo para o token
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    tokenExpires: {  // Novo campo para a expiração do token
+        type: Sequelize.DATE,
+        allowNull: true
     }
 });
 

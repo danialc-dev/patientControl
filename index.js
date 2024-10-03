@@ -108,14 +108,14 @@ app.get('/base', (req, res) => {
 // Rotas de recuperação e redefinição de senha
 
 app.get('/esqueci-senha', (req, res) => {
-    res.render('esqueci-senha');
+    res.render('RecuperarSenha/esqueci-senha');
 });
 
 app.post('/esqueci-senha', (req, res) => {
     const { email } = req.body;
     Pessoa.findOne({ where: { email } }).then(pessoa => {
         if (!pessoa) {
-            return res.render('esqueci-senha', { error: 'Email não encontrado' });
+            return res.render('RecuperarSenha/esqueci-senha', { error: 'Email não encontrado' });
         }
 
         const token = crypto.randomBytes(6).toString('hex');
@@ -134,11 +134,11 @@ app.post('/esqueci-senha', (req, res) => {
                 return console.log(error);
             }
             console.log('Email enviado: ' + info.response);
-            res.render('esqueci-senha', { success: 'Email enviado!' });
+            res.render('RecuperarSenha/esqueci-senha', { success: 'Email enviado!' });
         });
     }).catch(err => {
         console.error('Erro ao enviar e-mail:', err);
-        res.render('esqueci-senha', { error: 'Ocorreu um erro' });
+        res.render('RecuperarSenha/esqueci-senha', { error: 'Ocorreu um erro' });
     });
 });
 
@@ -146,13 +146,13 @@ app.get('/redefinir-senha/:token', (req, res) => {
     const { token } = req.params;
     Pessoa.findOne({ where: { token, tokenExpires: { [Op.gt]: Date.now() } } }).then(pessoa => {
         if (!pessoa) {
-            return res.render('redefinir-senha', { error: 'Token inválido ou expirado' });
+            return res.render('RecuperarSenha/redefinir-senha', { error: 'Token inválido ou expirado' });
         }
 
-        res.render('redefinir-senha', { token });
+        res.render('RecuperarSenha/redefinir-senha', { token });
     }).catch(err => {
         console.error('Erro ao verificar token:', err);
-        res.render('redefinir-senha', { error: 'Ocorreu um erro ao verificar o token.' });
+        res.render('RecuperarSenha/redefinir-senha', { error: 'Ocorreu um erro ao verificar o token.' });
     });
 });
 
@@ -160,7 +160,7 @@ app.post('/redefinir-senha', (req, res) => {
     const { token, senha } = req.body;
     Pessoa.findOne({ where: { token, tokenExpires: { [Op.gt]: Date.now() } } }).then(pessoa => {
         if (!pessoa) {
-            return res.render('redefinir-senha', { error: 'Token inválido ou expirado' });
+            return res.render('RecuperarSenha/redefinir-senha', { error: 'Token inválido ou expirado' });
         }
 
         const salt = bcrypt.genSaltSync(10);
@@ -170,7 +170,7 @@ app.post('/redefinir-senha', (req, res) => {
         res.redirect('/login');
     }).catch(err => {
         console.error('Erro ao redefinir senha:', err);
-        res.render('redefinir-senha', { error: 'Ocorreu um erro' });
+        res.render('RecuperarSenha/redefinir-senha', { error: 'Ocorreu um erro' });
     });
 });
 

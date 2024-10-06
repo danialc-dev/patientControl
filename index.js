@@ -19,6 +19,39 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+
+// Função para salvar o agendamento no banco de dados
+function salvarAgendamento() {
+    Agendamento.findOne({ where: { id: '1' } }).then(agendamento => {
+        function salvarAgendamento() {
+            if (!agendamento) {
+                if (!id_pessoa || !id_servico) {
+                    console.error('id_pessoa e id_servico devem ser fornecidos.');
+                    return; // Impede a criação do agendamento
+                }
+
+                Agendamento.create({
+                    'data-hora': data_hora,
+                    'appointment-name': '1',
+                    'appointment-service': '1'
+                })
+                    .then(() => {
+                        console.log('Agendamento criado com sucesso.');
+                    })
+                    .catch(err => {
+                        console.error('Erro ao criar agendamento:', err);
+                    });
+            } else {
+                console.log('Data e hora de agendamento indisponível.');
+            }
+        }
+
+    }).catch(err => {
+        console.error('Erro ao verificar agendamento:', err);
+    });
+}
+
+
 // Função para criar uma pessoa fictícia
 function criarPessoaFicticia() {
     Pessoa.findOne({ where: { email: 'ficticia@example.com' } }).then(pessoa => {
@@ -68,7 +101,7 @@ function criarServicoFicticio() {
 // Chama as funções para criar a pessoa e o serviço fictícios ao iniciar o servidor
 criarPessoaFicticia();
 criarServicoFicticio();
-
+salvarAgendamento();
 
 // ----------------------------------------------------------------------------
 // Rotas de autenticação e página inicial

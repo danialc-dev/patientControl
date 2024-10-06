@@ -61,27 +61,38 @@
             <div class="popup-content">
                 <span class="close-popup">&times;</span>
                 <h2>Agendar Atendimento</h2>
-                    <form id="appointment-form" action="/agendamentos" method="POST">
-                        <label for="appointment-date">Data:</label>
-                        <input type="text" id="appointment-date" name="date" readonly>
+                <form id="appointment-form">
+                    <!-- Campo oculto para armazenar o ID do paciente selecionado -->
+                    <input type="hidden" id="appointment-patient-id" name="id_pessoa">
 
-                        <label for="appointment-time">Horário:</label>
-                        <input type="time" id="appointment-time" name="time" required>
+                    <!-- Data do agendamento (somente leitura) -->
+                    <label for="appointment-date">Data:</label>
+                    <input type="text" id="appointment-date" name="date" readonly>
 
-                        <div class="field_login">
-                            <label for="appointment-name">Nome do Paciente:</label>
-                            <input type="text" id="appointment-name" name="name" autocomplete="off">
-                            <div id="name-suggestions" class="suggestions-box"></div>
-                        </div>
+                    <!-- Hora do agendamento -->
+                    <label for="appointment-time">Horário:</label>
+                    <input type="time" id="appointment-time" name="time" required>
 
-                        <div class="field_login">
-                            <label for="appointment-service">Serviço:</label>
-                            <input type="text" id="appointment-service" name="service" autocomplete="off">
-                            <div id="service-suggestions" class="suggestions-box"></div>
-                        </div>
+                    <!-- Nome do paciente (autocomplete para sugestão) -->
+                    <div class="field_login">
+                        <label for="appointment-name">Nome do Paciente:</label>
+                        <input type="text" id="appointment-name" name="name" autocomplete="off">
+                        <div id="name-suggestions" class="suggestions-box"></div>
+                    </div>
 
-                        <button type="submit">Agendar</button>
-                    </form>
+                    <!-- Serviço (autocomplete para sugestão) -->
+                    <div class="field_login">
+                        <label for="appointment-service">Serviço:</label>
+                        <input type="text" id="appointment-service" name="service" autocomplete="off">
+                        <div id="service-suggestions" class="suggestions-box"></div>
+                    </div>
+
+                    <!-- Contêiner para serviços selecionados -->
+                    <div id="services-container"></div>
+
+                    <!-- Botão para submeter o formulário -->
+                    <button type="submit">Agendar</button>
+                </form>
             </div>
         </div>
 

@@ -1,46 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <title>Patient Control</title>
     <link rel="stylesheet" href="/css/base.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <!-- BASE DO SISTEMA -->
 
-    <header class="header">
-        <a href="" id="help"><span class="material-icons" >help</span></a>
-        <h2 class="titulo1">Patient Control </h2>
-        
-    </header>
-    <div class="barraLateral">
-        <a href="" class="profileBackground">
-            <p class="nome">    
-                <img class="profilePic" src="/public/img/placeholder.jpg" alt="perfil">
-                <p class="">Tamiris</p>
-            </p>
-        </a>
-        
-        <ul class="navegacao">
-            
-            <li> <a class="navegacao1" href=""> Cadastro Paciente </a> </li>
-            <li> <a class="navegacao2" href=""> Relatórios </a> </li>
-            <li> <a class="navegacao3" href=""> Consultas </a> </li>
-        </ul>
-     
-    </div>
+<header id="header">
+    <h1>Patient Control</h1>
+</header>
 
-    <div class="principal">
-        <h1 class="titulo">Titulo da Pagina</h1>
-    </div>
+<div class="layout">
+    <aside id="sidebar">
+        <div class="profile">
+            <img src="/img/img.png" alt="Foto de perfil de Leandro" class="profile-pic">
+            <p class="profile-name">Leandro</p>
+        </div>
 
-   <!-- FIM DA BASE DO SISTEMA -->
+        <nav class="nav">
+            <a href="#" class="nav-link">Cadastro Paciente</a>
+            <a href="#" class="nav-link">Relatórios</a>
+            <a href="#" class="nav-link">Consultas</a>
+        </nav>
+    </aside>
 
+    <main id="main-content">
+        <section class="daily-summary">
+            <h2>Resumo do dia</h2>
+            <div class="appointments">
+                <div class="appointment">
+                    <h3>09:00</h3>
+                    <p>João Valente</p>
+                    <p><span class="red">Liberação com dry needling e ventosa terapia</span></p>
+                    <p>Valor do atendimento: <strong>R$150,00</strong></p>
+                </div>
+                <div class="appointment">
+                    <h3>13:00</h3>
+                </div>
+                <div class="appointment">
+                    <h3>15:00</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">←</button>
+                <h2 id="month-year"></h2>
+                <button id="next-month">→</button>
+            </div>
+            <div class="weekdays" id="weekdays"></div>
+            <div class="month" id="calendar-days"></div>
+        </section>
+
+        <!-- Pop-up de Novo Agendamento -->
+        <div id="appointment-popup" class="popup hidden">
+            <div class="popup-content">
+                <span class="close-popup">&times;</span>
+                <h2>Agendar Atendimento</h2>
+                    <form id="appointment-form" action="/agendamentos" method="POST">
+                        <label for="appointment-date">Data:</label>
+                        <input type="text" id="appointment-date" name="date" readonly>
+
+                        <label for="appointment-time">Horário:</label>
+                        <input type="time" id="appointment-time" name="time" required>
+
+                        <div class="field_login">
+                            <label for="appointment-name">Nome do Paciente:</label>
+                            <input type="text" id="appointment-name" name="name" autocomplete="off">
+                            <div id="name-suggestions" class="suggestions-box"></div>
+                        </div>
+
+                        <div class="field_login">
+                            <label for="appointment-service">Serviço:</label>
+                            <input type="text" id="appointment-service" name="service" autocomplete="off">
+                            <div id="service-suggestions" class="suggestions-box"></div>
+                        </div>
+
+                        <button type="submit">Agendar</button>
+                    </form>
+            </div>
+        </div>
+
+        <!-- Pop-up de Ver Agendamentos -->
+        <div id="view-appointments-popup" class="popup hidden">
+            <div class="popup-content large-popup">
+                <span class="close-popup">&times;</span>
+                <h2>Agendamentos do Dia</h2>
+                <div id="appointments-list"></div>
+            </div>
+        </div>
+
+        <!-- Pop-up Inicial de Escolha -->
+        <div id="options-popup" class="popup hidden">
+            <div class="popup-content">
+                <span class="close-popup">&times;</span>
+                <h2>Escolha uma Opção</h2>
+                <button id="view-appointments-button">Ver Agendamentos</button>
+                <button id="new-appointment-button">Novo Agendamento</button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="/js/base.js"></script>
 </body>
 </html>

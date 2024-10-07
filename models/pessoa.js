@@ -9,8 +9,7 @@ const Pessoa = connection.define('pessoa', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true  // Define o e-mail como único
+        allowNull: false
     },
     senha: {
         type: DataTypes.STRING,
@@ -22,8 +21,7 @@ const Pessoa = connection.define('pessoa', {
     },
     cpf: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true  // Define o CPF como único
+        allowNull: false
     },
     telefone: {
         type: DataTypes.STRING,
@@ -37,6 +35,17 @@ const Pessoa = connection.define('pessoa', {
         type: DataTypes.DATE,
         allowNull: true
     }
+}, {
+    indexes: [
+        {
+            unique: true,
+            fields: ['email']
+        },
+        {
+            unique: true,
+            fields: ['cpf']
+        }
+    ]
 });
 
 // Exporta o modelo 'Pessoa' primeiro
@@ -46,7 +55,17 @@ module.exports = Pessoa;
 const Agendamento = require('./agendamento'); // Agora importamos Agendamento para fazer a associação
 Pessoa.hasMany(Agendamento, { foreignKey: 'id_pessoa' });
 
-// Cria a tabela 'pessoas' no banco de dados, se ainda não existir
-Pessoa.sync({ force: false }).then(() => {
-    console.log("Tabela de pessoas criada");
-});
+// Sincronizar as tabelas na ordem correta
+(async () => {
+    try {
+        await Pessoa.sync({ force: false });
+        console.log("Tabela de pessoas criada");
+
+        await Agendamento.sync({ force: false });
+        console.log("Tabela de agendamentos criada");
+
+        // Aqui você pode sincronizar outras tabelas relacionadas, se houver.
+    } catch (error) {
+        console.error("Erro ao sincronizar banco de dados:", error);
+    }
+})();

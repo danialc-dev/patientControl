@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Adicionada lógica para recuperação de senha.">
-      <change afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/agendamentoController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/baseController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/pessoaController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/servicoController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/agendamentoServico.js" afterDir="false" />
+    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;.">
+      <change afterPath="$PROJECT_DIR$/controllers/testeController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/agendamento.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/agendamento.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/pessoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/pessoa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/servico.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/servico.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/base/base.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/base/base.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pessoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/pessoa.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +131,7 @@
       <workItem from="1727916910911" duration="2669000" />
       <workItem from="1727995699342" duration="136000" />
       <workItem from="1728216758876" duration="5914000" />
-      <workItem from="1728248787842" duration="9328000" />
+      <workItem from="1728248787842" duration="10754000" />
     </task>
     <task id="LOCAL-00001" summary="Teste primeiro push">
       <option name="closed" value="true" />
@@ -176,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727919597763</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;.">
+      <option name="closed" value="true" />
+      <created>1728258397903</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728258397903</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +186,8 @@
     <MESSAGE value="Adicionado database.js no gitignore." />
     <MESSAGE value="Adicionada lógica para recuperação de senha." />
     <MESSAGE value="bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug" />
+    <MESSAGE value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

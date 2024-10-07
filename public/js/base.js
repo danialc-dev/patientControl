@@ -56,11 +56,10 @@ function renderCalendar() {
                     dailyAppointments.forEach(appointment => {
                         const appointmentElement = document.createElement('div');
                         appointmentElement.innerHTML = `
-                                <p><strong>Horário:</strong> ${appointment.time}</p>
-                                <p><strong>Nome:</strong> ${appointment.name}</p>
-                                <p><strong>Serviço:</strong> ${appointment.service}</p>
-                                <hr>
-                            `;
+                            <p><strong>Horário:</strong> ${appointment.time}</p>
+                            <p><strong>Nome:</strong> ${appointment.name}</p>
+                            <p><strong>Serviço:</strong> ${appointment.service}</p>
+                            <hr>`;
                         document.getElementById('appointments-list').appendChild(appointmentElement);
                     });
                 }
@@ -118,6 +117,7 @@ document.getElementById('appointment-name').addEventListener('blur', function() 
     }, 200);  // Um pequeno atraso para permitir a seleção de um nome
 });
 
+// Sugestões para Nome do Paciente
 document.getElementById('appointment-name').addEventListener('input', async function() {
     const searchTerm = this.value;
 
@@ -142,11 +142,7 @@ document.getElementById('appointment-name').addEventListener('input', async func
                 suggestionsBox.appendChild(suggestion);
             });
 
-            if (pessoas.length > 0) {
-                suggestionsBox.style.display = 'block';  // Mostra a caixa de sugestões se houver resultados
-            } else {
-                suggestionsBox.style.display = 'none';  // Oculta a caixa se não houver sugestões
-            }
+            suggestionsBox.style.display = pessoas.length > 0 ? 'block' : 'none';  // Mostra ou oculta a caixa de sugestões
         } catch (error) {
             console.error('Erro ao buscar pessoas:', error);
         }
@@ -155,15 +151,14 @@ document.getElementById('appointment-name').addEventListener('input', async func
     }
 });
 
+// Sugestões para Serviço
 document.getElementById('appointment-service').addEventListener('input', async function() {
     const searchTerm = this.value;
-    console.log("Buscando serviços para:", searchTerm);  // Verifica se a função está sendo chamada
 
     if (searchTerm.length > 1) {
         try {
             const response = await fetch(`/buscar-servicos?term=${searchTerm}`);
             const servicos = await response.json();
-            console.log("Serviços encontrados:", servicos);  // Verifica se os dados estão sendo retornados
 
             const suggestionsBox = document.getElementById('service-suggestions');
             suggestionsBox.innerHTML = '';  // Limpa as sugestões anteriores
@@ -173,26 +168,100 @@ document.getElementById('appointment-service').addEventListener('input', async f
                 suggestion.textContent = servico.nome;
                 suggestion.classList.add('suggestion-item');
                 suggestion.addEventListener('click', () => {
-                    document.getElementById('appointment-service').value = servico.nome;
-                    document.getElementById('appointment-service-id').value = servico.id;  // Armazena o ID do serviço
+                    adicionarServico(servico.id, servico.nome);
+                    document.getElementById('appointment-service').value = '';  // Limpa o campo para novo input
                     suggestionsBox.innerHTML = '';  // Limpa as sugestões após a seleção
                     suggestionsBox.style.display = 'none';  // Oculta a caixa de sugestões
                 });
                 suggestionsBox.appendChild(suggestion);
             });
 
-            if (servicos.length > 0) {
-                suggestionsBox.style.display = 'block';  // Mostra a caixa de sugestões se houver resultados
-            } else {
-                suggestionsBox.style.display = 'none';  // Oculta a caixa se não houver sugestões
-            }
+            suggestionsBox.style.display = servicos.length > 0 ? 'block' : 'none';
         } catch (error) {
             console.error('Erro ao buscar serviços:', error);
         }
     } else {
-        document.getElementById('service-suggestions').style.display = 'none';  // Oculta sugestões se não houver caracteres suficientes
+        document.getElementById('service-suggestions').style.display = 'none';
     }
 });
 
+// Função para adicionar um novo campo de serviço ao formulário
+function adicionarServico(idServico, nomeServico) {
+    const servicesContainer = document.getElementById('services-container');
+
+    // Cria a div para o serviço
+    const serviceRow = document.createElement('div');
+    serviceRow.classList.add('service-row');
+
+    // Cria o input hidden para o ID do serviço
+    const serviceInput = document.createElement('input');
+    serviceInput.type = 'hidden';
+    serviceInput.name = 'servicos[]';  // Array de serviços para o backend
+    serviceInput.value = idServico;
+
+    // Cria um rótulo para exibir o nome do serviço
+    const serviceLabel = document.createElement('span');
+    serviceLabel.textContent = nomeServico;
+
+    // Botão para remover o serviço da lista
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.textContent = 'Remover';
+    removeButton.addEventListener('click', () => {
+        servicesContainer.removeChild(serviceRow);
+    });
+
+    // Adiciona o input, o rótulo e o botão de remover à div do serviço
+    serviceRow.appendChild(serviceInput);
+    serviceRow.appendChild(serviceLabel);
+    serviceRow.appendChild(removeButton);
+
+    // Adiciona a div do serviço ao container de serviços
+    servicesContainer.appendChild(serviceRow);
+}
+
+// Validação ao enviar o formulário
+document.getElementById('appointment-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const idPessoa = document.getElementById('appointment-patient-id').value;
+    const servicesContainer = document.getElementById('services-container');
+    const servicos = [...servicesContainer.querySelectorAll('input[name="servicos[]"]')].map(input => input.value);
+    const date = document.getElementById('appointment-date').value;
+    const time = document.getElementById('appointment-time').value;
+
+    if (!idPessoa || servicos.length === 0) {
+        alert("Por favor, selecione um paciente e pelo menos um serviço.");
+        return;
+    }
+
+    const requestBody = {
+        id_pessoa: idPessoa,
+        date: date,
+        time: time,
+        servicos: servicos
+    };
+
+    try {
+        const response = await fetch('/agendamentos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (response.ok) {
+            alert('Agendamento criado com sucesso!');
+            document.getElementById('appointment-popup').classList.add('hidden');
+            renderCalendar(); // Atualiza o calendário após a criação do agendamento
+        } else {
+            alert('Erro ao criar agendamento.');
+        }
+    } catch (error) {
+        console.error('Erro ao criar agendamento:', error);
+        alert('Erro ao criar agendamento.');
+    }
+});
 
 renderCalendar();

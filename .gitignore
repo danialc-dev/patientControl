@@ -1,3 +1,7 @@
 node_modules/
 .env
 database/database.js
+florescer-project.iml
+modules.xml
+php.xml
+vcs.xml

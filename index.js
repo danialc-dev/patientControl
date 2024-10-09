@@ -25,6 +25,11 @@ app.get('/login', (req, res) => {
     res.render('Login/login');
 });
 
+// Página de cadastro de pacientes
+app.get('/cadastroPaciente', (req, res) => {
+    res.render('CadastroPaciente/cadastroPaciente');
+});
+
 // Página do dashboard
 app.get('/dashboard', (req, res) => {
     res.send('Bem-vindo ao dashboard!');

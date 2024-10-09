@@ -1,156 +1,462 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-/* BASE DO SISTEMA */
-
-header {
-    width: 80%;
-    margin: 0 0 2% 15%;
-    filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.05));
-
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
-    font-family: "Mohave", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(93, 155, 155, 0.75);
+    color: #333;
     display: flex;
-    /* igual a altura do rodapé */
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-#help {
-    position: absolute;
-    margin: 2vh 0 50% 103%;
-    color: black;
-}
-
-#help:hover {
-    color: rgba(93, 155, 155, 0.65);
-}
-
-.titulo1 {
-    color: rgba(93, 155, 155, 0.45);
-    margin:1% 0 0 48.5%;
-    text-wrap: nowrap;
-}
-
-.barraLateral {
-
-    position: absolute;
-    box-sizing: border-box;
-    padding: 9.5%;
-    height: 160%;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px 5px 5px 0px;
-
-    background-color: rgba(93, 155, 155, 0.45);
-
-}
-
-
-/* perfil canto esquedo sup. */
-.profileBackground {
+#header {
     display: flex;
-    position: absolute;
-    width: 90%;
-    height: 5%;
-    left: 14px;
-    top: 21px;
-    border-radius: 50px;
-
+    justify-content: space-between;
+    align-items: center;
     background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
 
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
+#header h1 {
+    color: rgba(93, 155, 155, 0.85);
+    font-size: 2rem;
+    font-weight: bold;
+}
 
+.layout {
+    display: flex;
+    margin-top: 80px;
+    height: calc(100vh - 80px);
+}
+
+#sidebar {
+    background-color: white;
+    width: 250px;
+    padding: 2rem 1.5rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.nome {
-    margin-left: 30%;
-    margin-top: 13px;
-}
-
-.profilePic {
-    /* Ellipse 1 */
-
-    position: absolute;
-    width: 20%;
-    height: 85%;
-    left: 2.5%;
-    top: 7%;
-
-    background: url(.png);
-
-    border-radius: 100%;
-}
-
-
-.navegacao {
-    /* cadastroPaciente */
-    list-style: none;
-    position: absolute;
-    width: 150px;
-    height: 50px;
-    left: 10px;
-    top: 130px;
-    font-size: large;
-
-}
-
-.navegacao1 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao1:hover {
-    color: white;
-}
-
-.navegacao2 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao2:hover {
-    color: white;
-}
-
-.navegacao3 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao3:hover {
-    color: white;
-}
-
-/* body principal */
-
-.principal {
-    /* Body */
-    width: 79.5%;
-    height: 154%;
-    position: absolute;
-    margin: 3% 0 0 20%;
-    background-color: rgba(93, 155, 155, 0.45);
-    border-radius: 5px;
+.profile {
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
 
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    color: rgba(93, 155, 155, 0.85);
+    font-weight: 600;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: rgba(93, 155, 155, 0.85);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: rgba(93, 155, 155, 0.1);
+    color: rgba(46, 95, 95, 0.9);
+}
+
+#main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    overflow-y: auto;
+}
+
+.daily-summary h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.appointments {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.appointment {
+    background-color: rgb(215, 215, 215);
+    padding: 15px;
+    width: 30%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.appointment h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+.red {
+    color: red;
+}
+
+.calendar {
+    margin-top: 30px;
+    background-color: rgba(93, 155, 155, 0.75);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: rgb(243, 243, 243);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.calendar-header h2 {
+    font-size: 22px;
+}
+
+.calendar-header button {
+    background-color: rgba(240, 240, 240, 0);
+    border: none;
+    padding: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.calendar-header button:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    padding: 10px 0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    background-color: rgb(240, 240, 240);
+    padding: 4px 35px 40px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.day:hover {
+    transition: .2s ease;
+    background-color: rgb(215, 215, 215);
+}
+
+.today {
+    background-color: #93D4D4;
+    font-weight: bold;
+    color: white;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-popup:hover {
+    color: #93D4D4;
+}
+
+.popup-content h2 {
+    font-size: 24px;
+    color: rgba(93, 155, 155, 0.85);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.popup-content label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+.popup-content input, .popup-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(93, 155, 155, 0.4);
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.popup-content input:focus, .popup-content select:focus {
+    border-color: rgba(93, 155, 155, 0.85);
+    outline: none;
+}
+
+.popup-content button {
+    background-color: rgba(93, 155, 155, 0.85);
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+}
+
+.popup-content button:hover {
+    background-color: rgba(46, 95, 95, 0.85);
+}
+
+.hidden {
+    display: none;
+}
+
+.field_login {
+    position: relative;  /* Certifica que a caixa de sugestões será posicionada corretamente */
+}
+
+.suggestions-box {
+    position: absolute;
+    top: 100%;  /* Posiciona logo abaixo do input */
+    left: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 1000;
+    width: 100%;  /* Define a largura da caixa de sugestões igual à do input */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;  /* Inicialmente oculta */
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.suggestions-box div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions-box div:hover {
+    background-color: #f0f0f0;
 }
 
 
-.titulo {
-    color: black;
-    margin: 2% 0 0 39%;
+
+
+@media (max-width: 1024px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 200px;
+        padding: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+
+    #main-content {
+        padding: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .appointments {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .appointment {
+        width: 90%;
+    }
+
+    .calendar .month {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 180px;
+        padding: 1.2rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-name {
+        font-size: 1rem;
+    }
+
+    #main-content {
+        padding: 1rem;
+    }
+
+    .appointments {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .appointment {
+        width: 100%;
+    }
+
+    .calendar .month {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .calendar-header h2 {
+        font-size: 18px;
+    }
+
+    .popup-content {
+        padding: 1.5rem;
+        max-width: 400px; /* Reduz a largura em telas menores */
+    }
+
+    .popup-content h2 {
+        font-size: 20px;
+    }
+
+    .popup-content button {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #sidebar {
+        width: 60vw;
+        padding: 1rem;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+    }
+
+    .appointment {
+        padding: 10px;
+    }
+
+    .calendar .day {
+        padding: 15px;
+    }
+
+    .calendar .month {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .popup-content {
+        padding: 1rem;
+        max-width: 90%;
+    }
+
+    .popup-content h2 {
+        font-size: 18px;
+    }
+
+    .popup-content button {
+        padding: 8px 12px;
+    }
+
+    .close-popup {
+        font-size: 20px;
+    }
 }

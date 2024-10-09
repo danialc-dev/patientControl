@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;.">
+      <change afterPath="$PROJECT_DIR$/controllers/testeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pessoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/pessoa.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="viniciusnt05 &lt;viniciusnt05@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;danialc-dev&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/danialc-dev/florescer-project.git",
+    "accountId": "2980d35b-834c-4b7d-9a39-425c8e22ac62"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "danialc-dev",
+    "repository": "florescer-project"
+  }
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\php\php.exe" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2mnchDim9Br3Kgnz25tNc9StXxX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "salvar-agendamento-bd",
+    "last_opened_file_path": "C:/Users/dania/PhpstormProjects/florescer-project/public/css",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "D:\\Arquivos de Programas\\PhpStorm 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\public\css" />
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Arquivos de Programas\PhpStorm 2024.1.4\florescer-project\database" />
+      <recent name="D:\Arquivos de Programas\PhpStorm 2024.1.4\florescer-project\models" />
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views" />
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views\Login" />
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views\EsqueciSenha" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.18034.69" />
+        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.18034.69" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="" />
+      <created>1727715897918</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727715897918</updated>
+      <workItem from="1727715899106" duration="1458000" />
+      <workItem from="1727742369082" duration="10000" />
+      <workItem from="1727796040244" duration="2414000" />
+      <workItem from="1727825675737" duration="1173000" />
+      <workItem from="1727915212945" duration="1116000" />
+      <workItem from="1727916356026" duration="540000" />
+      <workItem from="1727916910911" duration="2669000" />
+      <workItem from="1727995699342" duration="136000" />
+      <workItem from="1728216758876" duration="5914000" />
+      <workItem from="1728248787842" duration="10754000" />
+    </task>
+    <task id="LOCAL-00001" summary="Teste primeiro push">
+      <option name="closed" value="true" />
+      <created>1727797124076</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727797124076</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Att. Page Agendamento">
+      <option name="closed" value="true" />
+      <created>1727915976337</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727915976337</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adicionado database.js no gitignore.">
+      <option name="closed" value="true" />
+      <created>1727916661027</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727916661027</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adicionada lógica para recuperação de senha.">
+      <option name="closed" value="true" />
+      <created>1727919597763</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727919597763</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;.">
+      <option name="closed" value="true" />
+      <created>1728258397903</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728258397903</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adicionado .gitIgnore e pasta img movida para dentro da public." />
+    <MESSAGE value="Teste primeiro push" />
+    <MESSAGE value="Att. Page Agendamento" />
+    <MESSAGE value="Adicionado database.js no gitignore." />
+    <MESSAGE value="Adicionada lógica para recuperação de senha." />
+    <MESSAGE value="bug" />
+    <MESSAGE value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

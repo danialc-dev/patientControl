@@ -36,6 +36,6 @@ exports.salvarAgendamento = async (req, res) => {
         res.status(201).send({ message: 'Agendamento criado com sucesso!' });
     } catch (error) {
         console.error('Erro ao criar agendamento:', error);
-        res.status(500).send({ message: 'Erro ao criar agendamento' });
+        res.status(404).send({ message: 'Erro ao criar agendamento' });
     }
 };

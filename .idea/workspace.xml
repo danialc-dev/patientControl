@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;.">
+    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Erro alterado para status 404.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/agendamentoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/agendamentoController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pessoaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pessoaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pessoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/pessoa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/cadastroPaciente.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/cadastroPaciente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,21 +81,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/dania/PhpstormProjects/florescer-project/public/css",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dania/PhpstormProjects/florescer-project/public/css&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dania\PhpstormProjects\florescer-project\public\css" />
@@ -171,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728258397903</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Erro alterado para status 404.">
+      <option name="closed" value="true" />
+      <created>1728521739583</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728521739583</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +209,8 @@
     <MESSAGE value="Adicionada lógica para recuperação de senha." />
     <MESSAGE value="bug" />
     <MESSAGE value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
+    <MESSAGE value="Erro alterado para status 404." />
+    <option name="LAST_COMMIT_MESSAGE" value="Erro alterado para status 404." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -44,3 +44,30 @@ document.getElementById('input-telefone').addEventListener('input', function (e)
     }
     e.target.value = value;
 });
+
+document.querySelector('.form-cadastro').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Impede o comportamento padrão do formulário
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+        const response = await fetch('/pessoas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            alert('Pessoa cadastrada com sucesso!');
+            // Você pode redirecionar ou limpar o formulário aqui
+        } else {
+            alert('Erro ao cadastrar pessoa.');
+        }
+    } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+        alert('Erro ao cadastrar pessoa.');
+    }
+});

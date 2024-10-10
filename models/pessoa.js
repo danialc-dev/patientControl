@@ -13,7 +13,7 @@ const Pessoa = connection.define('pessoa', {
     },
     senha: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     data_nascimento: {
         type: DataTypes.DATEONLY,
@@ -24,6 +24,30 @@ const Pessoa = connection.define('pessoa', {
         allowNull: false
     },
     telefone: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    hpp: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    hma: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    diagnostico_clinico: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    diagnostico_fisio: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    observacoes: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    medicamentos: {
         type: DataTypes.STRING,
         allowNull: true
     },

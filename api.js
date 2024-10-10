@@ -7,7 +7,9 @@ const servicoController = require('./controllers/servicoController');
 const agendamentoController = require('./controllers/agendamentoController');
 const baseController = require('./controllers/baseController');  // Importa o controlador de base
 
+
 // Rotas relacionadas a Pessoas
+router.post('/pessoas', pessoaController.criarPessoa);
 router.get('/buscar-pessoas', pessoaController.buscarPessoas);
 router.get('/criar-pessoa-ficticia', pessoaController.criarPessoaFicticia);
 

@@ -53,7 +53,7 @@ exports.criarPessoa = async (req, res) => {
         res.status(201).json(novaPessoa);
     } catch (error) {
         console.error('Erro ao criar nova pessoa:', error); // Mostra o erro no console
-        res.status(500).send({ error: 'Erro ao criar nova pessoa' }); // Corrigido para status 500
+        res.status(404).send({ error: 'Erro ao criar nova pessoa' }); // Corrigido para status 500
     }
 };
 
@@ -70,6 +70,6 @@ exports.buscarPessoas = async (req, res) => {
         res.json(pessoas);
     } catch (error) {
         console.error('Erro ao buscar pessoas:', error);
-        res.status(500).send({ error: 'Erro ao buscar pessoas' });
+        res.status(404).send({ error: 'Erro ao buscar pessoas' });
     }
 };

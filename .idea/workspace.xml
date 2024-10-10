@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Erro alterado para status 404.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
+    <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Adicionada integração na rota de cadastro de pessoas.">
       <change beforePath="$PROJECT_DIR$/controllers/pessoaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pessoaController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/pessoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/pessoa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/cadastroPaciente.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/cadastroPaciente.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728521739583</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adicionada integração na rota de cadastro de pessoas.">
+      <option name="closed" value="true" />
+      <created>1728524097525</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728524097525</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +212,8 @@
     <MESSAGE value="bug" />
     <MESSAGE value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
     <MESSAGE value="Erro alterado para status 404." />
-    <option name="LAST_COMMIT_MESSAGE" value="Erro alterado para status 404." />
+    <MESSAGE value="Adicionada integração na rota de cadastro de pessoas." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionada integração na rota de cadastro de pessoas." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

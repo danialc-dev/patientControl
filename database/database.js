@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const connection = new Sequelize('florescerdb', 'root', '1234',{
+const connection = new Sequelize('florescerdb', 'root', '',{
     host: 'localhost',
     dialect: 'mysql'
 })

@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Adicionada integração na rota de cadastro de pessoas.">
-      <change afterPath="$PROJECT_DIR$/public/css/header.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/recuperarConta.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/redefinirSenha.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/RecuperarConta/recuperarConta.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/redefinirSenha/redefinirSenha.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/Login/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/Login/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/RecuperarSenha/esqueci-senha.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/RecuperarSenha/redefinir-senha.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/recuperarConta.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/recuperarConta.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/redefinirSenha.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/redefinirSenha.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/redefinirSenha/redefinirSenha.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/redefinirSenha/redefinirSenha.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,22 +51,22 @@
     &quot;assignee&quot;: &quot;danialc-dev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/danialc-dev/florescer-project.git",
-    "accountId": "3e1d54b3-401e-48e5-a7bc-22eb73f91e4b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/danialc-dev/florescer-project.git&quot;,
+    &quot;accountId&quot;: &quot;3e1d54b3-401e-48e5-a7bc-22eb73f91e4b&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "danialc-dev",
-    "repository": "florescer-project"
+    &quot;owner&quot;: &quot;danialc-dev&quot;,
+    &quot;repository&quot;: &quot;florescer-project&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -89,7 +82,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/ajusteTelaLogin",
+    "git-widget-placeholder": "feature/ajustesTela",
     "last_opened_file_path": "C:/Users/dania/PhpstormProjects/florescer-project/public/css",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -204,6 +197,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ejs" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -225,7 +221,8 @@
     <MESSAGE value="Adicionado padrão de projeto MVC, lógica &quot;many to many&quot; entre agendamentos e servicos, através da tabela &quot;agendamento_servicos&quot;." />
     <MESSAGE value="Erro alterado para status 404." />
     <MESSAGE value="Adicionada integração na rota de cadastro de pessoas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionada integração na rota de cadastro de pessoas." />
+    <MESSAGE value="Inserção da página de redefinir senha e recuperação de conta e ajuste na tela de login." />
+    <option name="LAST_COMMIT_MESSAGE" value="Inserção da página de redefinir senha e recuperação de conta e ajuste na tela de login." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -168,8 +168,12 @@ async function renderCalendar() {
                 appointments.forEach(appointment => {
                     const appointmentDiv = document.createElement('div');
                     appointmentDiv.classList.add('appointment-summary');
+
+                    // Extraímos o horário diretamente da string de data_hora sem conversão
+                    const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
                     appointmentDiv.innerHTML = `
-                        <span class="appointment-time">${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span> 
+                        <span class="appointment-time">${horaOriginal}</span> 
                         <span class="appointment-name">${appointment.pessoa.nome}</span>
                     `;
                     dayElement.appendChild(appointmentDiv);
@@ -191,9 +195,11 @@ async function renderCalendar() {
                     const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
                     const dailyAppointments = await response.json();
                     dailyAppointments.forEach(appointment => {
+                        const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
                         const appointmentElement = document.createElement('div');
                         appointmentElement.innerHTML = `
-                            <p><strong>Horário:</strong> ${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                            <p><strong>Horário:</strong> ${horaOriginal}</p>
                             <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
                             <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
                             <hr>`;

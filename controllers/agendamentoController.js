@@ -4,7 +4,6 @@ const AgendamentoServico = require('../models/agendamentoServico');
 const Pessoa = require('../models/pessoa'); // Certifique-se de importar o modelo Pessoa
 const Servico = require('../models/servico'); // Ajuste o caminho conforme necessário
 
-// Função para salvar um agendamento
 exports.salvarAgendamento = async (req, res) => {
     const { id_pessoa, date, time, servicos } = req.body;
 
@@ -12,9 +11,16 @@ exports.salvarAgendamento = async (req, res) => {
         console.log('Iniciando criação do agendamento...');
         console.log('Dados recebidos:', { id_pessoa, date, time, servicos });
 
+        // Criar a data completa com a hora
+        let dataHora = new Date(`${date}T${time}`);
+
+        // Ajustar o fuso horário (exemplo: UTC-3, ajuste de -3 horas)
+        const diferencaFusoHorario = dataHora.getTimezoneOffset() / 60; // Calcula a diferença de UTC em horas
+        dataHora.setHours(dataHora.getHours() - diferencaFusoHorario); // Ajusta a hora para UTC
+
         const agendamento = await Agendamento.create({
             id_pessoa,
-            data_hora: `${date}T${time}`
+            data_hora: dataHora
         });
 
         if (Array.isArray(servicos) && servicos.length > 0) {
@@ -76,6 +82,7 @@ exports.buscarAgendamentosPorData = async (req, res) => {
                 attributes: ['nome']
             });
 
+            // Não ajustar o fuso horário, simplesmente retornar a data/hora como está no banco
             return {
                 ...agendamento.toJSON(),
                 servicos: servicos.map(servico => servico.nome)

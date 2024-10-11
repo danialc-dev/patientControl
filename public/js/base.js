@@ -17,19 +17,27 @@ async function fetchAppointments(date) {
         // Organiza os agendamentos por data
         data.forEach(appointment => {
             const dateKey = appointment.data_hora.split('T')[0];
+
             if (!appointments[dateKey]) {
                 appointments[dateKey] = [];
             }
+
+            // Converte a data/hora para o fuso horário local
+            const dataHora = new Date(appointment.data_hora);
+            const horaLocal = dataHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Adiciona os agendamentos no array com a hora local
             appointments[dateKey].push({
-                time: appointment.data_hora.split('T')[1].slice(0, 5), // Pega o horário
+                time: horaLocal, // Mostra a hora já ajustada
                 name: appointment.pessoa.nome,
-                service: appointment.servico // Supondo que o serviço esteja na resposta
+                service: appointment.servicos // Supondo que o serviço esteja na resposta
             });
         });
     } catch (error) {
         console.error('Erro ao buscar agendamentos:', error);
     }
 }
+
 
 // async function renderCalendar() {
 //     const month = currentDate.getMonth();
@@ -146,41 +154,51 @@ async function renderCalendar() {
         const monthFormatted = String(month + 1).padStart(2, '0');
         const fullDate = `${year}-${monthFormatted}-${dayFormatted}`;
 
+        // Verifica se é o dia atual
         if (day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear()) {
             dayElement.classList.add('today');
         }
 
+        // Fazer uma chamada à rota de buscar agendamentos para cada dia
+        try {
+            const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
+            const appointments = await response.json();
+
+            if (appointments.length > 0) {
+                appointments.forEach(appointment => {
+                    const appointmentDiv = document.createElement('div');
+                    appointmentDiv.classList.add('appointment-summary');
+                    appointmentDiv.innerHTML = `
+                        <span class="appointment-time">${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span> 
+                        <span class="appointment-name">${appointment.pessoa.nome}</span>
+                    `;
+                    dayElement.appendChild(appointmentDiv);
+                });
+            }
+        } catch (error) {
+            console.error(`Erro ao buscar agendamentos para ${fullDate}:`, error);
+        }
+
+        // Configurar o clique para exibir o popup de agendamentos completos
         dayElement.addEventListener('click', async () => {
             document.getElementById('appointment-date').value = fullDate;
-
-            // Mostrar o popup de opções
             document.getElementById('options-popup').classList.remove('hidden');
-
             // Configura o botão "Ver Agendamentos"
             document.getElementById('view-appointments-button').onclick = async () => {
                 document.getElementById('appointments-list').innerHTML = '';
 
                 try {
                     const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
-                    if (response.ok) {
-                        const dailyAppointments = await response.json();
-
-                        if (dailyAppointments.length === 0) {
-                            document.getElementById('appointments-list').innerHTML = '<p>Nenhum agendamento para este dia.</p>';
-                        } else {
-                            dailyAppointments.forEach(appointment => {
-                                const appointmentElement = document.createElement('div');
-                                appointmentElement.innerHTML = `
-                        <p><strong>Horário:</strong> ${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                        <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
-                        <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
-                        <hr>`;
-                                document.getElementById('appointments-list').appendChild(appointmentElement);
-                            });
-                        }
-                    } else {
-                        console.error('Erro ao buscar agendamentos:', response.status);
-                    }
+                    const dailyAppointments = await response.json();
+                    dailyAppointments.forEach(appointment => {
+                        const appointmentElement = document.createElement('div');
+                        appointmentElement.innerHTML = `
+                            <p><strong>Horário:</strong> ${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                            <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                            <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
+                            <hr>`;
+                        document.getElementById('appointments-list').appendChild(appointmentElement);
+                    });
                 } catch (error) {
                     console.error('Erro ao buscar agendamentos:', error);
                 }
@@ -189,17 +207,18 @@ async function renderCalendar() {
                 document.getElementById('view-appointments-popup').classList.remove('hidden');
                 document.getElementById('options-popup').classList.add('hidden');
             };
-
-            // Configura o botão "Novo Agendamento"
-            document.getElementById('new-appointment-button').onclick = () => {
-                document.getElementById('appointment-popup').classList.remove('hidden');
-                document.getElementById('options-popup').classList.add('hidden');
-            };
         });
 
         calendarDaysElement.appendChild(dayElement);
     }
 }
+
+// Configura o botão "Novo Agendamento"
+document.getElementById('new-appointment-button').onclick = () => {
+    document.getElementById('appointment-popup').classList.remove('hidden');
+    document.getElementById('options-popup').classList.add('hidden');
+};
+
 
 document.getElementById('prev-month').addEventListener('click', () => {
     currentDate.setMonth(currentDate.getMonth() - 1);

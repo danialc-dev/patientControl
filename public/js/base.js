@@ -2,14 +2,8 @@ const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
 let currentDate = new Date();
-let appointments = {
-    "2024-10-03": [
-        { time: "09:00", name: "João Valente", service: "Dry needling e ventosa terapia" },
-        { time: "13:00", name: "Maria Silva", service: "Consulta de rotina" }
-    ]
-};
 
-function renderCalendar() {
+async function renderCalendar() {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
 
@@ -38,45 +32,123 @@ function renderCalendar() {
         const monthFormatted = String(month + 1).padStart(2, '0');
         const fullDate = `${year}-${monthFormatted}-${dayFormatted}`;
 
+        // Verifica se é o dia atual
         if (day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear()) {
             dayElement.classList.add('today');
         }
 
-        dayElement.addEventListener('click', () => {
-            document.getElementById('options-popup').classList.remove('hidden');
+        // Fazer uma chamada à rota de buscar agendamentos para cada dia
+        try {
+            const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
+            const appointments = await response.json();
+
+            if (appointments.length > 0) {
+                appointments.forEach(appointment => {
+                    const appointmentDiv = document.createElement('div');
+                    appointmentDiv.classList.add('appointment-summary');
+
+                    // Extraímos o horário diretamente da string de data_hora sem conversão
+                    const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
+                    appointmentDiv.innerHTML = `
+                        <span class="appointment-time">${horaOriginal}</span> 
+                        <span class="appointment-name">${appointment.pessoa.nome}</span>
+                        <span class="appointment-price">R$ ${appointment.preco.toFixed(2)}</span> <!-- Adicionando o preço -->
+                    `;
+                    dayElement.appendChild(appointmentDiv);
+                });
+            }
+        } catch (error) {
+            console.error(`Erro ao buscar agendamentos para ${fullDate}:`, error);
+        }
+
+        // Configurar o clique para exibir o popup de agendamentos completos
+        dayElement.addEventListener('click', async () => {
             document.getElementById('appointment-date').value = fullDate;
 
-            // "Ver Agendamentos" action
-            document.getElementById('view-appointments-button').onclick = () => {
+            const selectedDate = new Date(`${fullDate}T00:00:00`);
+            const currentDate = new Date(); // Data atual
+
+            if (selectedDate < currentDate.setHours(0, 0, 0, 0)) {
+                // Se a data selecionada for anterior ao dia atual, abre o modal de "Ver Agendamentos"
                 document.getElementById('appointments-list').innerHTML = '';
-                const dailyAppointments = appointments[fullDate] || [];
-                if (dailyAppointments.length === 0) {
-                    document.getElementById('appointments-list').innerHTML = '<p>Nenhum agendamento para este dia.</p>';
-                } else {
+
+                try {
+                    const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
+                    const dailyAppointments = await response.json();
                     dailyAppointments.forEach(appointment => {
+                        const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
                         const appointmentElement = document.createElement('div');
                         appointmentElement.innerHTML = `
-                            <p><strong>Horário:</strong> ${appointment.time}</p>
-                            <p><strong>Nome:</strong> ${appointment.name}</p>
-                            <p><strong>Serviço:</strong> ${appointment.service}</p>
+                            <p><strong>Horário:</strong> ${horaOriginal}</p>
+                            <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                            <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
+                            <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p> <!-- Exibindo o preço -->
                             <hr>`;
                         document.getElementById('appointments-list').appendChild(appointmentElement);
                     });
+                } catch (error) {
+                    console.error('Erro ao buscar agendamentos:', error);
                 }
-                document.getElementById('view-appointments-popup').classList.remove('hidden');
-                document.getElementById('options-popup').classList.add('hidden');
-            };
 
-            // "Novo Agendamento" action
-            document.getElementById('new-appointment-button').onclick = () => {
-                document.getElementById('appointment-popup').classList.remove('hidden');
-                document.getElementById('options-popup').classList.add('hidden');
-            };
+                // Exibe o popup de agendamentos
+                document.getElementById('view-appointments-popup').classList.remove('hidden');
+            } else {
+                // Se for uma data futura ou o dia atual, exibe o popup de opções e configura o botão "Ver Agendamentos"
+                document.getElementById('options-popup').classList.remove('hidden');
+
+                // Configura o botão "Ver Agendamentos"
+                document.getElementById('view-appointments-button').onclick = async () => {
+                    document.getElementById('appointments-list').innerHTML = '';
+
+                    try {
+                        const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
+                        const dailyAppointments = await response.json();
+                        dailyAppointments.forEach(appointment => {
+                            const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
+                            const appointmentElement = document.createElement('div');
+                            appointmentElement.innerHTML = `
+                                <p><strong>Horário:</strong> ${horaOriginal}</p>
+                                <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                                <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
+                                <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p> <!-- Exibindo o preço -->
+                                <hr>`;
+                            document.getElementById('appointments-list').appendChild(appointmentElement);
+                        });
+                    } catch (error) {
+                        console.error('Erro ao buscar agendamentos:', error);
+                    }
+
+                    // Exibe o popup de agendamentos
+                    document.getElementById('view-appointments-popup').classList.remove('hidden');
+                    document.getElementById('options-popup').classList.add('hidden');
+                };
+            }
         });
 
         calendarDaysElement.appendChild(dayElement);
     }
 }
+
+
+// Função que limpa os campos do modal de agendamento
+function limparCamposAgendamento() {
+    document.getElementById('appointment-name').value = ''; // Limpa o nome do paciente
+    document.getElementById('appointment-patient-id').value = ''; // Limpa o ID do paciente
+    document.getElementById('appointment-service').value = ''; // Limpa o serviço
+    document.getElementById('appointment-time').value = ''; // Limpa o horário
+    document.getElementById('appointment-price').value = ''; // Limpa o preco
+    document.getElementById('services-container').innerHTML = ''; // Remove todos os serviços adicionados
+}
+
+// Configura o botão "Novo Agendamento"
+document.getElementById('new-appointment-button').onclick = () => {
+    limparCamposAgendamento(); // Limpa os campos do modal sempre que ele for aberto
+    document.getElementById('appointment-popup').classList.remove('hidden');
+    document.getElementById('options-popup').classList.add('hidden');
+};
 
 document.getElementById('prev-month').addEventListener('click', () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
@@ -112,9 +184,9 @@ document.getElementById('appointment-name').addEventListener('focus', function()
 document.getElementById('appointment-name').addEventListener('blur', function() {
     setTimeout(() => {
         inputFocused = false;
-        document.getElementById('name-suggestions').innerHTML = '';  // Limpa as sugestões após perder o foco
-        document.getElementById('name-suggestions').style.display = 'none';  // Oculta a caixa de sugestões
-    }, 200);  // Um pequeno atraso para permitir a seleção de um nome
+        document.getElementById('name-suggestions').innerHTML = '';
+        document.getElementById('name-suggestions').style.display = 'none';
+    }, 200);
 });
 
 // Sugestões para Nome do Paciente
@@ -127,7 +199,7 @@ document.getElementById('appointment-name').addEventListener('input', async func
             const pessoas = await response.json();
 
             const suggestionsBox = document.getElementById('name-suggestions');
-            suggestionsBox.innerHTML = '';  // Limpa sugestões anteriores
+            suggestionsBox.innerHTML = '';
 
             pessoas.forEach(pessoa => {
                 const suggestion = document.createElement('div');
@@ -136,18 +208,18 @@ document.getElementById('appointment-name').addEventListener('input', async func
                 suggestion.addEventListener('click', () => {
                     document.getElementById('appointment-name').value = pessoa.nome;
                     document.getElementById('appointment-patient-id').value = pessoa.id;  // Armazena o ID da pessoa
-                    suggestionsBox.innerHTML = '';  // Limpa as sugestões após a seleção
-                    suggestionsBox.style.display = 'none';  // Oculta a caixa de sugestões
+                    suggestionsBox.innerHTML = '';
+                    suggestionsBox.style.display = 'none';
                 });
                 suggestionsBox.appendChild(suggestion);
             });
 
-            suggestionsBox.style.display = pessoas.length > 0 ? 'block' : 'none';  // Mostra ou oculta a caixa de sugestões
+            suggestionsBox.style.display = pessoas.length > 0 ? 'block' : 'none';
         } catch (error) {
             console.error('Erro ao buscar pessoas:', error);
         }
     } else {
-        document.getElementById('name-suggestions').style.display = 'none';  // Oculta sugestões se não houver caracteres suficientes
+        document.getElementById('name-suggestions').style.display = 'none';
     }
 });
 
@@ -161,7 +233,7 @@ document.getElementById('appointment-service').addEventListener('input', async f
             const servicos = await response.json();
 
             const suggestionsBox = document.getElementById('service-suggestions');
-            suggestionsBox.innerHTML = '';  // Limpa as sugestões anteriores
+            suggestionsBox.innerHTML = '';
 
             servicos.forEach(servico => {
                 const suggestion = document.createElement('div');
@@ -169,9 +241,9 @@ document.getElementById('appointment-service').addEventListener('input', async f
                 suggestion.classList.add('suggestion-item');
                 suggestion.addEventListener('click', () => {
                     adicionarServico(servico.id, servico.nome);
-                    document.getElementById('appointment-service').value = '';  // Limpa o campo para novo input
-                    suggestionsBox.innerHTML = '';  // Limpa as sugestões após a seleção
-                    suggestionsBox.style.display = 'none';  // Oculta a caixa de sugestões
+                    document.getElementById('appointment-service').value = '';
+                    suggestionsBox.innerHTML = '';
+                    suggestionsBox.style.display = 'none';
                 });
                 suggestionsBox.appendChild(suggestion);
             });
@@ -189,21 +261,17 @@ document.getElementById('appointment-service').addEventListener('input', async f
 function adicionarServico(idServico, nomeServico) {
     const servicesContainer = document.getElementById('services-container');
 
-    // Cria a div para o serviço
     const serviceRow = document.createElement('div');
     serviceRow.classList.add('service-row');
 
-    // Cria o input hidden para o ID do serviço
     const serviceInput = document.createElement('input');
     serviceInput.type = 'hidden';
-    serviceInput.name = 'servicos[]';  // Array de serviços para o backend
+    serviceInput.name = 'servicos[]';
     serviceInput.value = idServico;
 
-    // Cria um rótulo para exibir o nome do serviço
     const serviceLabel = document.createElement('span');
     serviceLabel.textContent = nomeServico;
 
-    // Botão para remover o serviço da lista
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remover';
@@ -211,12 +279,10 @@ function adicionarServico(idServico, nomeServico) {
         servicesContainer.removeChild(serviceRow);
     });
 
-    // Adiciona o input, o rótulo e o botão de remover à div do serviço
     serviceRow.appendChild(serviceInput);
     serviceRow.appendChild(serviceLabel);
     serviceRow.appendChild(removeButton);
 
-    // Adiciona a div do serviço ao container de serviços
     servicesContainer.appendChild(serviceRow);
 }
 
@@ -230,8 +296,11 @@ document.getElementById('appointment-form').addEventListener('submit', async fun
     const date = document.getElementById('appointment-date').value;
     const time = document.getElementById('appointment-time').value;
 
-    if (!idPessoa || servicos.length === 0) {
-        alert("Por favor, selecione um paciente e pelo menos um serviço.");
+    // Obter o preço do campo de entrada
+    const preco = document.getElementById('appointment-price').value;
+
+    if (!idPessoa || servicos.length === 0 || !preco) {
+        alert("Por favor, selecione um paciente, pelo menos um serviço e insira um preço.");
         return;
     }
 
@@ -239,7 +308,8 @@ document.getElementById('appointment-form').addEventListener('submit', async fun
         id_pessoa: idPessoa,
         date: date,
         time: time,
-        servicos: servicos
+        servicos: servicos,
+        preco: parseFloat(preco) // Adicionando o preço ao requestBody
     };
 
     try {
@@ -263,5 +333,70 @@ document.getElementById('appointment-form').addEventListener('submit', async fun
         alert('Erro ao criar agendamento.');
     }
 });
+
+let currentIndex = 0;
+const itemsToShow = 3;
+
+function carregarResumoDoDia() {
+    const today = new Date().toISOString().split('T')[0];
+
+    fetch(`/buscar-agendamentos?date=${today}`)
+        .then(response => response.json())
+        .then(agendamentos => {
+            const resumoContainer = document.getElementById('resumo-dia');
+            resumoContainer.innerHTML = ''; // Limpa o resumo atual
+
+            if (agendamentos.length > 0) {
+                agendamentos.forEach(agendamento => {
+                    const agendamentoDiv = document.createElement('div');
+                    agendamentoDiv.classList.add('appointment');
+
+                    const hora = agendamento.data_hora.split('T')[1].slice(0, 5);
+
+                    agendamentoDiv.innerHTML = `
+                        <h3>${hora}</h3>
+                        <p>${agendamento.pessoa.nome}</p>
+                        <p><span class="red">${agendamento.servicos.join(', ')}</span></p>
+                        <p>Valor do atendimento: <strong>R$150,00</strong></p>
+                    `;
+                    resumoContainer.appendChild(agendamentoDiv);
+                });
+
+                // Ajusta a largura do container de resumo para caber todos os itens
+                resumoContainer.style.width = `${100 * agendamentos.length / itemsToShow}%`;
+            } else {
+                resumoContainer.innerHTML = '<p>Não há agendamentos para hoje.</p>';
+            }
+        })
+        .catch(error => console.error('Erro ao carregar o resumo do dia:', error));
+}
+
+function nextSlide() {
+    const track = document.querySelector('.carousel-track');
+    const items = document.querySelectorAll('.appointment');
+    const totalItems = items.length;
+
+    if (currentIndex < totalItems - itemsToShow) {
+        currentIndex++;
+        const percentageToMove = 100 / itemsToShow;  // Mover de acordo com a quantidade de itens visíveis
+        track.style.transform = `translateX(-${currentIndex * percentageToMove}%)`;
+    }
+}
+
+function prevSlide() {
+    const track = document.querySelector('.carousel-track');
+
+    if (currentIndex > 0) {
+        currentIndex--;
+        const percentageToMove = 100 / itemsToShow;  // Mover de acordo com a quantidade de itens visíveis
+        track.style.transform = `translateX(-${currentIndex * percentageToMove}%)`;
+    }
+}
+
+document.querySelector('.carousel-next').addEventListener('click', nextSlide);
+document.querySelector('.carousel-prev').addEventListener('click', prevSlide);
+
+carregarResumoDoDia();
+
 
 renderCalendar();

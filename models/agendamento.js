@@ -11,6 +11,10 @@ const Agendamento = connection.define('agendamento', {
         },
         allowNull: false
     },
+    preco: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
     data_hora: {
         type: DataTypes.DATE,
         allowNull: false

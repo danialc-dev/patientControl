@@ -176,14 +176,18 @@ body {
 
 .day {
     background-color: rgb(240, 240, 240);
-    padding: 4px 35px 40px 4px;
+    padding: 4px 5px; /* Reduz o padding para caber mais conteúdo */
     border-radius: 5px;
     cursor: pointer;
     transition: .2s ease;
+    height: 90px; /* Mantém uma altura fixa */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse o limite */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .day:hover {
-    transition: .2s ease;
     background-color: rgb(215, 215, 215);
 }
 
@@ -191,6 +195,7 @@ body {
     background-color: #93D4D4;
     font-weight: bold;
     color: white;
+    height: 90px; /* Mantém o mesmo tamanho para o dia atual */
 }
 
 .popup {
@@ -322,6 +327,67 @@ body {
     background-color: #f0f0f0;
 }
 
+.carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: calc(100% * 3);
+}
+
+.appointments {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.appointment {
+    background-color: rgb(215, 215, 215);
+    padding: 15px;
+    min-width: 200px; /* Definir um tamanho mínimo para cada item */
+    flex: 0 0 30%;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.carousel-prev, .carousel-next {
+    background-color: #93D4D4;
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+    background-color: #77b4b4;
+}
+
+.carousel-prev {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-next {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
 @media (max-width: 1024px) {
     .layout {
         flex-direction: column;
@@ -352,6 +418,24 @@ body {
 
     .appointment {
         width: 90%;
+    }
+
+    .appointment-time {
+        font-weight: bold;
+        font-size: 0.7rem; /* Reduz o tamanho da fonte do horário */
+    }
+
+    .appointment-name {
+        font-size: 0.65rem; /* Reduz o tamanho da fonte do nome */
+    }
+
+    .appointment-summary {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Texto com "..." se ultrapassar o limite */
+        font-size: 0.65rem; /* Tamanho menor para o texto */
+        margin-top: 2px; /* Menor espaço entre os itens */
     }
 
     .calendar .month {

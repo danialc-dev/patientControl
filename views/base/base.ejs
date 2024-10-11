@@ -30,19 +30,10 @@
     <main id="main-content">
         <section class="daily-summary">
             <h2>Resumo do dia</h2>
-            <div class="appointments">
-                <div class="appointment">
-                    <h3>09:00</h3>
-                    <p>João Valente</p>
-                    <p><span class="red">Liberação com dry needling e ventosa terapia</span></p>
-                    <p>Valor do atendimento: <strong>R$150,00</strong></p>
-                </div>
-                <div class="appointment">
-                    <h3>13:00</h3>
-                </div>
-                <div class="appointment">
-                    <h3>15:00</h3>
-                </div>
+            <div class="carousel-container">
+                <button class="carousel-prev">←</button>
+                <div class="carousel-track" id="resumo-dia"></div>
+                <button class="carousel-next">→</button>
             </div>
         </section>
 
@@ -89,6 +80,12 @@
 
                     <!-- Contêiner para serviços selecionados -->
                     <div id="services-container"></div>
+
+                    <!-- Campo de preço -->
+                    <div class="field_login">
+                        <label for="appointment-price">Preço:</label>
+                        <input type="number" id="appointment-price" name="preco" step="0.01" required> <!-- Adicionando o campo de preço -->
+                    </div>
 
                     <!-- Botão para submeter o formulário -->
                     <button type="submit">Agendar</button>

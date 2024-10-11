@@ -28,8 +28,6 @@ exports.criarPessoaFicticia = async () => {
 exports.criarPessoa = async (req, res) => {
     const { nome, email, senha, data_nascimento, cpf, telefone, hpp, hma, diag_clinic, diag_fisio, obs, medicines } = req.body;
 
-    console.log('Dados recebidos para criação de pessoa:', req.body); // Debug: Mostra os dados recebidos
-
     try {
         // const hashedPassword = bcrypt.hashSync(senha, bcrypt.genSaltSync(10));
         // console.log('Senha criptografada:', hashedPassword); // Debug: Mostra a senha criptografada
@@ -49,7 +47,6 @@ exports.criarPessoa = async (req, res) => {
             medicines
         });
 
-        console.log('Pessoa criada com sucesso:', novaPessoa); // Debug: Mostra a nova pessoa criada
         res.status(201).json(novaPessoa);
     } catch (error) {
         console.error('Erro ao criar nova pessoa:', error); // Mostra o erro no console

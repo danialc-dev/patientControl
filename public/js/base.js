@@ -171,9 +171,10 @@ async function renderCalendar() {
                             dailyAppointments.forEach(appointment => {
                                 const appointmentElement = document.createElement('div');
                                 appointmentElement.innerHTML = `
-                                    <p><strong>Horário:</strong> ${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                                    <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
-                                    <hr>`;
+                        <p><strong>Horário:</strong> ${new Date(appointment.data_hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                        <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                        <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
+                        <hr>`;
                                 document.getElementById('appointments-list').appendChild(appointmentElement);
                             });
                         }

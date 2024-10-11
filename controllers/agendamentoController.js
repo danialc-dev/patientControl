@@ -2,6 +2,7 @@ const Agendamento = require('../models/agendamento');
 const { Op } = require('sequelize');
 const AgendamentoServico = require('../models/agendamentoServico');
 const Pessoa = require('../models/pessoa'); // Certifique-se de importar o modelo Pessoa
+const Servico = require('../models/servico'); // Ajuste o caminho conforme necessário
 
 // Função para salvar um agendamento
 exports.salvarAgendamento = async (req, res) => {
@@ -32,16 +33,25 @@ exports.salvarAgendamento = async (req, res) => {
     }
 };
 
-// Função para buscar agendamentos por data
 exports.buscarAgendamentosPorData = async (req, res) => {
     const { date } = req.query; // Obtendo a data da query
-    console.log(req.query)
+    console.log(req.query);
+
+    // Validação básica da data
+    if (!date || isNaN(new Date(date))) {
+        return res.status(400).json({ error: 'Data inválida' });
+    }
+
     try {
+        const startDate = new Date(date);
+        const endDate = new Date(startDate);
+        endDate.setDate(endDate.getDate() + 1);
+
         const agendamentos = await Agendamento.findAll({
             where: {
                 data_hora: {
-                    [Op.gte]: new Date(date), // Filtra agendamentos a partir da data
-                    [Op.lt]: new Date(new Date(date).setDate(new Date(date).getDate() + 1)) // Para incluir todos os agendamentos do dia
+                    [Op.gte]: startDate, // Filtra agendamentos a partir da data
+                    [Op.lt]: endDate // Inclui todos os agendamentos do dia
                 }
             },
             include: [{
@@ -51,7 +61,28 @@ exports.buscarAgendamentosPorData = async (req, res) => {
             order: [['data_hora', 'ASC']]
         });
 
-        res.json(agendamentos);
+        // Para cada agendamento, buscar os serviços relacionados
+        const agendamentosComServicos = await Promise.all(agendamentos.map(async agendamento => {
+            const agendamentoServicos = await AgendamentoServico.findAll({
+                where: { id_agendamento: agendamento.id }
+            });
+
+            // Buscar os nomes dos serviços relacionados
+            const servicosIds = agendamentoServicos.map(servico => servico.id_servico);
+            const servicos = await Servico.findAll({
+                where: {
+                    id: servicosIds
+                },
+                attributes: ['nome']
+            });
+
+            return {
+                ...agendamento.toJSON(),
+                servicos: servicos.map(servico => servico.nome)
+            };
+        }));
+
+        res.json(agendamentosComServicos);
     } catch (error) {
         console.error('Erro ao buscar agendamentos:', error);
         res.status(500).json({ error: 'Erro ao buscar agendamentos' });

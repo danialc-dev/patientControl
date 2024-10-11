@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Control - Redefinir Senha</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/redefinirSenha.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="" id="help"><span class="material-icons">help</span></a>
+        <h1 class="titulo-header">Patient Control </h1>
+    </header>
+
+    <div class="container">
+        <form action="/redefinir" method="POST" id="form-redefinir">
+            <div>
+            <h2 id="titulo-redefinir-senha">REDEFINIR SENHA</h2>
+        </div>
+
+            <div class="main_field_redefinir">
+                <div class="field_redefinir">
+                    <label for="senha" id="lb-senha">Nova senha: <br>
+                        <input type="password" placeholder="Digite sua senha" id="senha" name="senha" required>
+                    </label>
+                </div>
+
+                <div class="field_redefinir">
+                    <label for="senha" id="lb-confirmeSenha">Confirme sua senha: <br>
+                        <input type="password" placeholder="Digite novamente sua senha" id="confirmeSenha"
+                            name="confirmeSenha" required>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-confirmar">Confirmar</button>
+        </form>
+    </div>
+</body>
+</html>

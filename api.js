@@ -25,4 +25,8 @@ router.get('/base', (req, res) => {
     res.render('base/base');  // Renderiza a view da página base
 });
 
+router.get('/recuperar-senha', (req, res) => {
+    res.render('RecuperarConta/esqueci-senha');  // Renderiza a view da página base
+});
+
 module.exports = router;

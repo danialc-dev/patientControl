@@ -17,6 +17,16 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+// Rota recuperação de conta
+app.get('/recuperarConta', (req, res) => {
+    res.render('RecuperarConta/recuperarConta');
+});
+
+// Rota recuperação de senha
+app.get('/redefinirSenha', (req, res) => {
+    res.render('redefinirSenha/redefinirSenha');
+});
+
 // Usa as rotas do arquivo api.js
 app.use(apiRoutes);  // Sem prefixo '/api' para que a rota '/base' funcione
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Control - Recuperar Conta</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/recuperarConta.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById('e-mail').value;
+            const messageElement = document.getElementById('message');
+
+            const registeredEmails = ['user@example.com', 'admin@example.com'];
+
+            if (registeredEmails.includes(emailInput)) {
+                messageElement.textContent = 'Link de recuperação gerado, confira sua caixa de entrada.';
+                messageElement.style.color = 'green';
+            } else {
+                messageElement.textContent = 'Email inválido.';
+                messageElement.style.color = 'red';
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="" id="help"><span class="material-icons">help</span></a>
+        <h1 class="titulo-header">Patient Control</h1>
+    </header>
+
+    <div class="container">
+        <form action="/recuperarConta" method="POST" id="form-recuperar" onsubmit="handleSubmit(event)">
+            <h2 id="titulo-recuperar">RECUPERAR CONTA</h2>
+
+            <div class="main_field_recuperar">
+                <div class="field_recuperar">
+                    <label for="e-mail">E-mail: <br>
+                        <input type="text" placeholder="Digite e-mail vinculado" id="e-mail" name="e-mail" required>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-enviar">Enviar</button>
+            <div id="message" style="margin-top: 1rem;"></div>
+        </form>
+    </div>
+</body>
+</html>

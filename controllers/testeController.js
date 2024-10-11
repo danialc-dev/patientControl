@@ -12,7 +12,6 @@ exports.criarPessoaFicticia = async () => {
             cpf: '123.456.789-00',
             telefone: '(11) 99999-9999',
         });
-        console.log('Pessoa fictícia criada:', pessoa.nome);
     } catch (error) {
         console.error('Erro ao criar pessoa fictícia:', error);
     }
@@ -25,7 +24,6 @@ exports.criarServicoFicticio = async () => {
             nome: 'Teste Serviço',
             descricao: 'Serviço fictício de exemplo',
         });
-        console.log('Serviço fictício criado:', servico.nome);
     } catch (error) {
         console.error('Erro ao criar serviço fictício:', error);
     }

@@ -36,6 +36,6 @@ app.get('/dashboard', (req, res) => {
 });
 
 // Inicia o servidor
-app.listen(8080, () => {
+app.listen(8007, () => {
     console.log('Servidor rodando na porta 8080...');
 });

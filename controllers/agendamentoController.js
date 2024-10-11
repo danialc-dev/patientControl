@@ -5,12 +5,9 @@ const Pessoa = require('../models/pessoa'); // Certifique-se de importar o model
 const Servico = require('../models/servico'); // Ajuste o caminho conforme necessário
 
 exports.salvarAgendamento = async (req, res) => {
-    const { id_pessoa, date, time, servicos } = req.body;
+    const { id_pessoa, date, time, servicos, preco } = req.body; // Adicionando preco ao destructuring
 
     try {
-        console.log('Iniciando criação do agendamento...');
-        console.log('Dados recebidos:', { id_pessoa, date, time, servicos });
-
         // Criar a data completa com a hora
         let dataHora = new Date(`${date}T${time}`);
 
@@ -20,6 +17,7 @@ exports.salvarAgendamento = async (req, res) => {
 
         const agendamento = await Agendamento.create({
             id_pessoa,
+            preco,
             data_hora: dataHora
         });
 
@@ -41,7 +39,6 @@ exports.salvarAgendamento = async (req, res) => {
 
 exports.buscarAgendamentosPorData = async (req, res) => {
     const { date } = req.query; // Obtendo a data da query
-    console.log(req.query);
 
     // Validação básica da data
     if (!date || isNaN(new Date(date))) {

@@ -19,7 +19,6 @@ router.get('/criar-servico-ficticio', servicoController.criarServicoFicticio);
 
 // Rotas relacionadas a Agendamentos
 router.post('/agendamentos', agendamentoController.salvarAgendamento);
-// Rota para buscar agendamentos por data
 router.get('/buscar-agendamentos', agendamentoController.buscarAgendamentosPorData);
 
 // Rota para a view base

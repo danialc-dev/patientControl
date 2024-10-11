@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.titulo-recuperar{
+    color: rgba(93, 155, 155);
+}
+
+#titulo-recuperar {
+    margin-bottom: 2rem;
+    color: rgba(93, 155, 155);
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -14,30 +24,26 @@
     height: auto;
 }
 
-#form-login {
+
+#form-recuperar {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-#titulo-login {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: rgb(93, 155, 155);
-}
-
-.field_login {
+.field_recuperar {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 label {
     font-size: 1rem;
     color: #333;
+    margin-bottom: 0.5rem;
 }
 
-#email, #senha {
+#e-mail{
     width: 50vh;
     padding: 0.8rem;
     margin-top: 0.2rem;
@@ -46,11 +52,16 @@ label {
     background-color: #f9f9f9;
     font-size: 1rem;
     outline: none;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
-.button-entrar {
+#e-mail:focus {
+    border-color: rgb(93, 155, 155);
+}
+
+.btn-enviar {
     width: 10rem;
+    margin: 1rem 0 0 0;
     padding: 0.8rem;
     border: none;
     border-radius: 10px;
@@ -61,53 +72,31 @@ label {
     transition: background-color 0.3s ease;
 }
 
-.button-entrar:hover {
+.btn-enviar:hover {
     background-color: rgb(46, 95, 95);
 }
 
-#forgot-password {
-    display: block;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: rgb(93, 155, 155);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-#forgot-password:hover {
-    color: rgb(46, 95, 95);
-}
-
 @media (max-width: 480px) {
-    body {
-        background-color: rgba(93, 155, 155, 0.75);
-    }
-
-    #cabecalho h1 {
+    .cabecalho h1 {
         font-size: 1.5rem;
     }
 
     .container {
-        width: 90vw;
-        padding: 1rem;
+        padding: 1.5rem;
         margin: 5vh auto;
     }
 
-    #titulo-login {
+    #titulo-recuperar {
         font-size: 1.5rem;
     }
 
-    #email, #senha {
-        padding: 0.6rem;
+    #e-mail{
+        padding: 0.7rem;
         font-size: 0.9rem;
     }
 
-    .button-entrar {
+    .btn-enviar {
         padding: 0.7rem;
         font-size: 1rem;
-    }
-
-    #forgot-password {
-        font-size: 0.8rem;
     }
 }

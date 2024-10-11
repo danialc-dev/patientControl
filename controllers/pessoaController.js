@@ -25,6 +25,38 @@ exports.criarPessoaFicticia = async () => {
     }
 };
 
+exports.criarPessoa = async (req, res) => {
+    const { nome, email, senha, data_nascimento, cpf, telefone, hpp, hma, diag_clinic, diag_fisio, obs, medicines } = req.body;
+
+    console.log('Dados recebidos para criação de pessoa:', req.body); // Debug: Mostra os dados recebidos
+
+    try {
+        // const hashedPassword = bcrypt.hashSync(senha, bcrypt.genSaltSync(10));
+        // console.log('Senha criptografada:', hashedPassword); // Debug: Mostra a senha criptografada
+
+        const novaPessoa = await Pessoa.create({
+            nome,
+            email,
+            // senha: hashedPassword,
+            data_nascimento,
+            cpf,
+            telefone,
+            hpp,
+            hma,
+            diag_clinic,
+            diag_fisio,
+            obs,
+            medicines
+        });
+
+        console.log('Pessoa criada com sucesso:', novaPessoa); // Debug: Mostra a nova pessoa criada
+        res.status(201).json(novaPessoa);
+    } catch (error) {
+        console.error('Erro ao criar nova pessoa:', error); // Mostra o erro no console
+        res.status(404).send({ error: 'Erro ao criar nova pessoa' }); // Corrigido para status 500
+    }
+};
+
 // Função para buscar pessoas
 exports.buscarPessoas = async (req, res) => {
     const { term } = req.query;
@@ -38,6 +70,6 @@ exports.buscarPessoas = async (req, res) => {
         res.json(pessoas);
     } catch (error) {
         console.error('Erro ao buscar pessoas:', error);
-        res.status(500).send({ error: 'Erro ao buscar pessoas' });
+        res.status(404).send({ error: 'Erro ao buscar pessoas' });
     }
 };

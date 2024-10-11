@@ -7,7 +7,9 @@ const servicoController = require('./controllers/servicoController');
 const agendamentoController = require('./controllers/agendamentoController');
 const baseController = require('./controllers/baseController');  // Importa o controlador de base
 
+
 // Rotas relacionadas a Pessoas
+router.post('/pessoas', pessoaController.criarPessoa);
 router.get('/buscar-pessoas', pessoaController.buscarPessoas);
 router.get('/criar-pessoa-ficticia', pessoaController.criarPessoaFicticia);
 
@@ -21,6 +23,10 @@ router.post('/agendamentos', agendamentoController.salvarAgendamento);
 // Rota para a view base
 router.get('/base', (req, res) => {
     res.render('base/base');  // Renderiza a view da página base
+});
+
+router.get('/recuperar-senha', (req, res) => {
+    res.render('RecuperarConta/esqueci-senha');  // Renderiza a view da página base
 });
 
 module.exports = router;

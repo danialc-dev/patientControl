@@ -6,37 +6,75 @@
     <title>Patient Control - Redefinir Senha</title>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/redefinirSenha.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header class="cabecalho">
-        <a href="" id="help"><span class="material-icons">help</span></a>
-        <h1 class="titulo-header">Patient Control </h1>
-    </header>
+<header class="cabecalho">
+    <a href="" id="help"><span class="material-icons">help</span></a>
+    <h1 class="titulo-header">Patient Control </h1>
+</header>
 
-    <div class="container">
-        <form action="/redefinir-senha" method="POST" id="form-redefinir">
-            <div>
+<div class="container">
+    <form method="POST" id="form-redefinir">
+        <div>
             <h2 id="titulo-redefinir-senha">REDEFINIR SENHA</h2>
         </div>
 
-            <div class="main_field_redefinir">
-                <div class="field_redefinir">
-                    <label for="senha" id="lb-senha">Nova senha: <br>
-                        <input type="password" placeholder="Digite sua senha" id="senha" name="senha" required>
-                    </label>
-                </div>
-
-                <div class="field_redefinir">
-                    <label for="senha" id="lb-confirmeSenha">Confirme sua senha: <br>
-                        <input type="password" placeholder="Digite novamente sua senha" id="confirmeSenha"
-                            name="confirmeSenha" required>
-                    </label>
-                </div>
+        <div class="main_field_redefinir">
+            <div class="field_redefinir">
+                <label for="senha" id="lb-senha">Nova senha: <br>
+                    <input type="password" placeholder="Digite sua senha" id="senha" name="senha" required>
+                </label>
             </div>
 
-            <button type="submit" class="btn-confirmar">Confirmar</button>
-        </form>
-    </div>
+            <div class="field_redefinir">
+                <label for="confirmeSenha" id="lb-confirmeSenha">Confirme sua senha: <br>
+                    <input type="password" placeholder="Digite novamente sua senha" id="confirmeSenha"
+                           name="confirmeSenha" required>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-confirmar">Confirmar</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('form-redefinir');
+        const token = '<%= token %>';  // Obtenha o token do EJS aqui
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evitar o envio padrão do formulário
+
+            const formData = new FormData(form);
+            const senha = formData.get('senha');
+            const confirmeSenha = formData.get('confirmeSenha');
+
+            try {
+                const response = await fetch(`/redefinirSenha?token=${token}`, { // Usa o token obtido do EJS
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ senha, confirmeSenha })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Senha alterada com sucesso! Redirecionando para o login...');
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 2000); // Redireciona após 2 segundos
+                } else {
+                    alert(result.message); // Exibe a mensagem de erro se houver
+                }
+            } catch (err) {
+                console.error('Erro:', err);
+                alert('Ocorreu um erro. Tente novamente.');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

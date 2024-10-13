@@ -1,17 +1,22 @@
 const Pessoa = require('../models/pessoa');
 const Servico = require('../models/servico');
+const bcrypt = require('bcryptjs');
 
-// Função para criar uma pessoa fictícia
 exports.criarPessoaFicticia = async () => {
     try {
+        // Gera o hash da senha antes de salvar no banco de dados
+        const salt = bcrypt.genSaltSync(10);  // Gera um salt com fator de custo 10
+        const hashedPassword = bcrypt.hashSync('123456', salt);  // Criptografa a senha
+
         const pessoa = await Pessoa.create({
             nome: 'Teste Pessoa',
             email: 'teste@exemplo.com',
-            senha: '123456',
+            senha: hashedPassword,  // Armazena a senha criptografada
             data_nascimento: '2000-01-01',
             cpf: '123.456.789-00',
             telefone: '(11) 99999-9999',
         });
+
         console.log('Pessoa fictícia criada:', pessoa.nome);
     } catch (error) {
         console.error('Erro ao criar pessoa fictícia:', error);

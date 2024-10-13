@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const { Op } = require('sequelize');
-const Pessoa = require('../models/pessoa');  // Certifique-se de que o caminho está correto
+const Pessoa = require('../models/pessoa');
 require('dotenv').config();
 
 // Função de login
@@ -43,7 +43,7 @@ exports.esqueciSenha = async (req, res) => {
         const token = crypto.randomBytes(6).toString('hex');
         await pessoa.update({ token, tokenExpires: Date.now() + 3600000 });
 
-        const link = `http://localhost:8080/redefinirSenha?token${token}`;
+        const link = `http://localhost:8080/redefinirSenha?token=${token}`;
         console.log('Link de recuperação:', link); // Log do link gerado
 
         const mailOptions = {
@@ -70,19 +70,16 @@ exports.esqueciSenha = async (req, res) => {
     }
 };
 
-
-
-// Função para redefinir a senha
+// Função para redefinir senha
 exports.redefinirSenha = async (req, res) => {
-    const { token } = req.query; // Capturando o token da query
-    const { senha } = req.body;   // Capturando a nova senha do corpo da requisição
-
-    // Verificação do valor do token
-    if (!token) {
-        return res.status(400).render('redefinirSenha', { error: 'Token é necessário' });
-    }
+    const { token } = req.query;
+    const { senha, confirmeSenha } = req.body;
 
     try {
+        if (senha !== confirmeSenha) {
+            return res.status(400).json({ success: false, message: 'As senhas não coincidem' });
+        }
+
         const pessoa = await Pessoa.findOne({
             where: {
                 token,
@@ -91,17 +88,31 @@ exports.redefinirSenha = async (req, res) => {
         });
 
         if (!pessoa) {
-            return res.render('redefinirSenha', { error: 'Token inválido ou expirado' });
+            return res.status(400).json({ success: false, message: 'Token inválido ou expirado' });
         }
 
         const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcrypt.hashSync(senha, salt);
+        const senhaCriptografada = bcrypt.hashSync(senha, salt);
 
-        await pessoa.update({ senha: hashedPassword, token: null, tokenExpires: null });
+        await pessoa.update({
+            senha: senhaCriptografada,
+            token: null,
+            tokenExpires: null
+        });
 
-        return res.redirect('Login/login');
+        // Resposta de sucesso com JSON
+        return res.status(200).json({ success: true, message: 'Senha redefinida com sucesso!' });
     } catch (err) {
         console.error('Erro ao redefinir senha:', err);
-        return res.render('redefinirSenha/redefinirSenha', { error: 'Ocorreu um erro' });
+        return res.status(500).json({ success: false, message: 'Ocorreu um erro ao redefinir sua senha' });
     }
 };
+
+
+
+
+
+
+
+
+

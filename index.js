@@ -6,6 +6,7 @@ require('./database/database');
 
 // Importa o testeController e chama as funções para criar a pessoa e o serviço fictícios
 const testeController = require('./controllers/testeController');
+const authController = require("./controllers/authController");
 (async () => {
     await testeController.criarPessoaFicticia();
     await testeController.criarServicoFicticio();
@@ -17,9 +18,18 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+app.get('/dashboard', (req, res) => {
+    res.render('base/base');
+});
+
+//enviando o email para recuperação de senha:
+app.post('/api/esqueci-senha', authController.esqueciSenha);
+app.post('/api/redefinir-senha', authController.redefinirSenha);
+
 // Rota recuperação de conta
 app.get('/recuperarConta', (req, res) => {
     res.render('RecuperarConta/recuperarConta');
+
 });
 
 // Rota recuperação de senha
@@ -41,9 +51,9 @@ app.get('/cadastroPaciente', (req, res) => {
 });
 
 // Página do dashboard
-app.get('/dashboard', (req, res) => {
-    res.send('Bem-vindo ao dashboard!');
-});
+//app.get('/dashboard', (req, res) => {
+ //   res.send('Bem-vindo ao dashboard!');
+//});
 
 // Inicia o servidor
 app.listen(8080, () => {

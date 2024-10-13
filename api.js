@@ -5,8 +5,17 @@ const router = express.Router();
 const pessoaController = require('./controllers/pessoaController');
 const servicoController = require('./controllers/servicoController');
 const agendamentoController = require('./controllers/agendamentoController');
-const baseController = require('./controllers/baseController');  // Importa o controlador de base
+const baseController = require('./controllers/baseController');
+const authController = require ('./controllers/authController') // Importa o controlador de base
 
+//rota para login
+router.post('/login', authController.login);
+
+//rota para redefirnir a senha
+router.post('/redefinir-senha', authController.redefinirSenha);
+
+// Rota para esqueci senha
+router.post('/esqueci-senha', authController.esqueciSenha);
 
 // Rotas relacionadas a Pessoas
 router.post('/pessoas', pessoaController.criarPessoa);
@@ -30,3 +39,4 @@ router.get('/recuperar-senha', (req, res) => {
 });
 
 module.exports = router;
+

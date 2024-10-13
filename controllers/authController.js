@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const { Op } = require('sequelize');
-const Pessoa = require('../models/pessoa');  // Certifique-se de que o caminho está correto
+const Pessoa = require('../models/pessoa');
 require('dotenv').config();
 
 // Função de login
@@ -37,13 +37,15 @@ exports.esqueciSenha = async (req, res) => {
         const pessoa = await Pessoa.findOne({ where: { email } });
 
         if (!pessoa) {
-            return res.render('esqueci-senha', { error: 'Email não encontrado' });
+            return res.status(404).json({ success: false, message: 'Email não encontrado' });
         }
 
         const token = crypto.randomBytes(6).toString('hex');
         await pessoa.update({ token, tokenExpires: Date.now() + 3600000 });
 
-        const link = `http://localhost:8080/redefinir-senha/${token}`;
+        const link = `http://localhost:8080/redefinirSenha?token=${token}`;
+        console.log('Link de recuperação:', link); // Log do link gerado
+
         const mailOptions = {
             from: process.env.EMAIL,
             to: email,
@@ -60,18 +62,24 @@ exports.esqueciSenha = async (req, res) => {
         });
 
         await transporter.sendMail(mailOptions);
-        return res.render('esqueci-senha', { success: 'Email enviado!' });
+        console.log('E-mail enviado com sucesso!'); // Log de confirmação
+        return res.json({ success: true, message: 'Email enviado!' });
     } catch (err) {
         console.error('Erro ao enviar e-mail:', err);
-        return res.render('esqueci-senha', { error: 'Ocorreu um erro' });
+        return res.status(500).json({ success: false, message: 'Ocorreu um erro' });
     }
 };
 
-// Função para redefinir a senha
+// Função para redefinir senha
 exports.redefinirSenha = async (req, res) => {
-    const { token, senha } = req.body;
+    const { token } = req.query;
+    const { senha, confirmeSenha } = req.body;
 
     try {
+        if (senha !== confirmeSenha) {
+            return res.status(400).json({ success: false, message: 'As senhas não coincidem' });
+        }
+
         const pessoa = await Pessoa.findOne({
             where: {
                 token,
@@ -80,17 +88,31 @@ exports.redefinirSenha = async (req, res) => {
         });
 
         if (!pessoa) {
-            return res.render('redefinir-senha', { error: 'Token inválido ou expirado' });
+            return res.status(400).json({ success: false, message: 'Token inválido ou expirado' });
         }
 
         const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcrypt.hashSync(senha, salt);
+        const senhaCriptografada = bcrypt.hashSync(senha, salt);
 
-        await pessoa.update({ senha: hashedPassword, token: null, tokenExpires: null });
+        await pessoa.update({
+            senha: senhaCriptografada,
+            token: null,
+            tokenExpires: null
+        });
 
-        return res.redirect('/login');
+        // Resposta de sucesso com JSON
+        return res.status(200).json({ success: true, message: 'Senha redefinida com sucesso!' });
     } catch (err) {
         console.error('Erro ao redefinir senha:', err);
-        return res.render('redefinir-senha', { error: 'Ocorreu um erro' });
+        return res.status(500).json({ success: false, message: 'Ocorreu um erro ao redefinir sua senha' });
     }
 };
+
+
+
+
+
+
+
+
+

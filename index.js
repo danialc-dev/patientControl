@@ -17,33 +17,8 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-// Rota recuperação de conta
-app.get('/recuperarConta', (req, res) => {
-    res.render('RecuperarConta/recuperarConta');
-});
-
-// Rota recuperação de senha
-app.get('/redefinirSenha', (req, res) => {
-    res.render('redefinirSenha/redefinirSenha');
-});
-
-// Usa as rotas do arquivo api.js
-app.use(apiRoutes);  // Sem prefixo '/api' para que a rota '/base' funcione
-
-// Página de login
-app.get('/login', (req, res) => {
-    res.render('Login/login');
-});
-
-// Página de cadastro de pacientes
-app.get('/cadastroPaciente', (req, res) => {
-    res.render('CadastroPaciente/cadastroPaciente');
-});
-
-// Página do dashboard
-app.get('/dashboard', (req, res) => {
-    res.send('Bem-vindo ao dashboard!');
-});
+// Usa as rotas definidas no arquivo api.js
+app.use(apiRoutes);
 
 // Inicia o servidor
 app.listen(8080, () => {

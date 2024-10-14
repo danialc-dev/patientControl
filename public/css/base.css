@@ -376,16 +376,17 @@ body {
 .carousel-prev {
     position: absolute;
     left: 10px;
-    top: 50%;
+    top: 89%;
     transform: translateY(-50%);
 }
 
 .carousel-next {
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 89%;
     transform: translateY(-50%);
 }
+
 
 
 @media (max-width: 1024px) {

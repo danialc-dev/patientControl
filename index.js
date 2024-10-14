@@ -21,6 +21,6 @@ app.use(express.static('public'));
 app.use(apiRoutes);
 
 // Inicia o servidor
-app.listen(8080, () => {
+app.listen(8087, () => {
     console.log('Servidor rodando na porta 8080...');
 });

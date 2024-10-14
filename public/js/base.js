@@ -71,23 +71,29 @@ async function renderCalendar() {
 
             if (selectedDate < currentDate.setHours(0, 0, 0, 0)) {
                 // Se a data selecionada for anterior ao dia atual, abre o modal de "Ver Agendamentos"
-                document.getElementById('appointments-list').innerHTML = '';
+                document.getElementById('appointments-list').innerHTML = ''; // Limpa a lista de agendamentos
 
                 try {
                     const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
                     const dailyAppointments = await response.json();
-                    dailyAppointments.forEach(appointment => {
-                        const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
 
-                        const appointmentElement = document.createElement('div');
-                        appointmentElement.innerHTML = `
-                            <p><strong>Horário:</strong> ${horaOriginal}</p>
-                            <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
-                            <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
-                            <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p> <!-- Exibindo o preço -->
-                            <hr>`;
-                        document.getElementById('appointments-list').appendChild(appointmentElement);
-                    });
+                    if (dailyAppointments.length > 0) {
+                        dailyAppointments.forEach(appointment => {
+                            const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
+                            const appointmentElement = document.createElement('div');
+                            appointmentElement.innerHTML = `
+                        <p><strong>Horário:</strong> ${horaOriginal}</p>
+                        <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                        <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
+                        <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p>
+                        <hr>`;
+                            document.getElementById('appointments-list').appendChild(appointmentElement);
+                        });
+                    } else {
+                        // Se não houver agendamentos para a data anterior, exibe a mensagem
+                        document.getElementById('appointments-list').innerHTML = '<p>Não houve agendamentos para este dia.</p>';
+                    }
                 } catch (error) {
                     console.error('Erro ao buscar agendamentos:', error);
                 }
@@ -95,33 +101,39 @@ async function renderCalendar() {
                 // Exibe o popup de agendamentos
                 document.getElementById('view-appointments-popup').classList.remove('hidden');
             } else {
-                // Se for uma data futura ou o dia atual, exibe o popup de opções e configura o botão "Ver Agendamentos"
+                // Se for uma data futura ou o dia atual, exibe o popup de opções
                 document.getElementById('options-popup').classList.remove('hidden');
 
                 // Configura o botão "Ver Agendamentos"
                 document.getElementById('view-appointments-button').onclick = async () => {
-                    document.getElementById('appointments-list').innerHTML = '';
+                    document.getElementById('appointments-list').innerHTML = ''; // Limpa a lista de agendamentos
 
                     try {
                         const response = await fetch(`/buscar-agendamentos?date=${fullDate}`);
                         const dailyAppointments = await response.json();
-                        dailyAppointments.forEach(appointment => {
-                            const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
 
-                            const appointmentElement = document.createElement('div');
-                            appointmentElement.innerHTML = `
-                                <p><strong>Horário:</strong> ${horaOriginal}</p>
-                                <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
-                                <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
-                                <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p> <!-- Exibindo o preço -->
-                                <hr>`;
-                            document.getElementById('appointments-list').appendChild(appointmentElement);
-                        });
+                        if (dailyAppointments.length > 0) {
+                            dailyAppointments.forEach(appointment => {
+                                const horaOriginal = appointment.data_hora.split('T')[1].slice(0, 5); // Hora no formato HH:MM
+
+                                const appointmentElement = document.createElement('div');
+                                appointmentElement.innerHTML = `
+                            <p><strong>Horário:</strong> ${horaOriginal}</p>
+                            <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                            <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
+                            <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p>
+                            <hr>`;
+                                document.getElementById('appointments-list').appendChild(appointmentElement);
+                            });
+                        } else {
+                            // Se não houver agendamentos para a data futura, exibe a mensagem
+                            document.getElementById('appointments-list').innerHTML = '<p>Não há agendamentos para este dia.</p>';
+                        }
                     } catch (error) {
                         console.error('Erro ao buscar agendamentos:', error);
                     }
 
-                    // Exibe o popup de agendamentos
+                    // Exibe o popup de agendamentos e oculta o popup de opções
                     document.getElementById('view-appointments-popup').classList.remove('hidden');
                     document.getElementById('options-popup').classList.add('hidden');
                 };
@@ -340,6 +352,9 @@ const itemsToShow = 3;
 function carregarResumoDoDia() {
     const today = new Date().toISOString().split('T')[0];
 
+    const setaEsquerda = document.querySelector('.carousel-prev');
+    const setaDireita = document.querySelector('.carousel-next');
+
     fetch(`/buscar-agendamentos?date=${today}`)
         .then(response => response.json())
         .then(agendamentos => {
@@ -354,18 +369,31 @@ function carregarResumoDoDia() {
                     const hora = agendamento.data_hora.split('T')[1].slice(0, 5);
 
                     agendamentoDiv.innerHTML = `
-                        <h3>${hora}</h3>
-                        <p>${agendamento.pessoa.nome}</p>
-                        <p><span class="red">${agendamento.servicos.join(', ')}</span></p>
-                        <p>Valor do atendimento: <strong>R$150,00</strong></p>
-                    `;
+                    <h3>${hora}</h3>
+                    <p>${agendamento.pessoa.nome}</p>
+                    <p><span class="red">${agendamento.servicos.join(', ')}</span></p>
+                    <p>Valor do atendimento: <strong>R$${agendamento.preco.toFixed(2)}</strong></p>
+                `;
                     resumoContainer.appendChild(agendamentoDiv);
+
                 });
 
                 // Ajusta a largura do container de resumo para caber todos os itens
                 resumoContainer.style.width = `${100 * agendamentos.length / itemsToShow}%`;
+
+                // Mostrar as setas se houver mais de um agendamento
+                if (agendamentos.length > 1) {
+                    setaEsquerda.style.display = 'block';
+                    setaDireita.style.display = 'block';
+                } else {
+                    setaEsquerda.style.display = 'none';
+                    setaDireita.style.display = 'none';
+                }
+
             } else {
                 resumoContainer.innerHTML = '<p>Não há agendamentos para hoje.</p>';
+                setaEsquerda.style.display = 'none';
+                setaDireita.style.display = 'none';
             }
         })
         .catch(error => console.error('Erro ao carregar o resumo do dia:', error));

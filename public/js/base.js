@@ -426,5 +426,4 @@ document.querySelector('.carousel-prev').addEventListener('click', prevSlide);
 
 carregarResumoDoDia();
 
-
 renderCalendar();

@@ -1,257 +1,283 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-/* BASE DO SISTEMA */
-
-header {
-    width: 80%;
-    margin: 0 0 2% 15%;
-    filter: drop-shadow(0px 1.1px 2px rgba(0, 0, 0, 0.05));
-
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
-    font-family: "Mohave", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(93, 155, 155, 0.75);
+    color: #333;
     display: flex;
-    /* igual a altura do rodapé */
-}
-
-#help {
-    position: absolute;
-    margin: 2vh 0 50% 103%;
-    color: black;
-}
-
-#help:hover {
-    color: rgba(93, 155, 155, 0.65);
-}
-
-.titulo1 {
-    color: rgba(93, 155, 155, 0.45);
-    margin:1% 0 0 48.5%;
-    text-wrap: nowrap;
-}
-
-.barraLateral {
-
-    position: absolute;
-    box-sizing: border-box;
-    padding: 9.5%;
-    height: 160%;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px 5px 5px 0px;
-
-    background-color: rgba(93, 155, 155, 0.45);
-
-}
-
-
-/* perfil canto esquedo sup. */
-.profileBackground {
-    display: flex;
-    position: absolute;
-    width: 90%;
-    height: 5%;
-    left: 14px;
-    top: 21px;
-    border-radius: 50px;
-
-    background-color: white;
-
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-
-    align-items: center;
-}
-
-.nome {
-    margin-left: 30%;
-    margin-top: 13px;
-}
-
-.profilePic {
-    /* Ellipse 1 */
-
-    position: absolute;
-    width: 20%;
-    height: 85%;
-    left: 2.5%;
-    top: 7%;
-
-    background: url(.png);
-
-    border-radius: 100%;
-}
-
-
-.navegacao {
-    /* cadastroPaciente */
-    list-style: none;
-    position: absolute;
-    width: 150px;
-    height: 50px;
-    left: 10px;
-    top: 130px;
-    font-size: large;
-
-}
-
-.navegacao1 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao1:hover {
-    color: white;
-}
-
-.navegacao2 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao2:hover {
-    color: white;
-}
-
-.navegacao3 {
-    text-decoration: none;
-    color: black;
-}
-
-
-.navegacao3:hover {
-    color: white;
-}
-
-/* body principal */
-
-.principal {
-    /* Body */
-    width: 79.5%;
-    height: 154%;
-    position: absolute;
-    margin: 3% 0 0 20%;
-    background-color: rgba(93, 155, 155, 0.45);
-    border-radius: 5px;
-    display: flex;
-    align-items: flex-start;
     flex-direction: column;
-
+    min-height: 100vh;
 }
 
-
-.titulo {
-    color: black;
-    margin: 2% 0 0 39%;
-}
-
-/* Box paciente */
-
-.container-paciente {
+#header {
     display: flex;
-}
-
-.paciente {
-    width: 95%;
-    height: 8%;
-    border-radius: 10px;
-    margin: 1% 0 0 2.5%;
+    justify-content: center;
+    align-items: center;
     background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#header h1 {
+    color: rgba(93, 155, 155, 0.85);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.layout {
     display: flex;
-    flex-direction: row ;
+    margin-top: 80px;
+    height: calc(100vh - 80px);
 }
 
-#img-patient {
-    border-radius: 100%;
-    margin: 0.5% 0 0 1%;
-    width: auto;
-    height: auto;
-    max-height: 85%;
-}
-
-.nome-paciente {
-    margin: 2% 0 0 2%;
-}
-
-.nome-paciente a {
-    text-decoration: none;
-    color: black;
-}
-
-.btn-box {
-    margin: 0% 0 0 24%;
+#sidebar {
+    background-color: white;
+    width: 250px;
+    padding: 2rem 1.5rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: row;
-    width: 40%;
+    flex-direction: column;
     align-items: center;
 }
 
-.btn-acess {
-    width: 50%;
-    height: 60%;
-    background-color: rgba(0, 0, 0, 0.27);
-    color: black;
-    border: 0px;
-    border-radius:10px;
-    font-size: larger;
-    font-weight: bold;
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
-.btn-acess:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    color: rgba(93, 155, 155, 0.85);
+    font-weight: 600;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: rgba(93, 155, 155, 0.85);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-color: rgba(93, 155, 155, 0.1);
+    color: rgba(46, 95, 95, 0.9);
+}
+
+.patients-list {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    overflow-y: auto;
+}
+
+.patients-list h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.patient {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.patient-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.patient-info {
+    flex-grow: 1;
+}
+
+.patient-info p {
+    margin: 0.2rem 0;
+}
+
+.patient-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
     color: white;
-    filter:drop-shadow(0.8px 0.8px 0.8px black) ;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.btn-edit {
-    margin: 0 0 0 2%;
-    width: 30%;
-    height: 60%;
-    background-color: rgba(97, 221, 109, 0.65);
-    color: black;
-    border: 0px;
-    border-radius:10px;
-    font-size: larger;
-    font-weight: bold;
+#btn-access {
+    background-color: rgba(93, 155, 155, 0.85);
 }
 
-
-.btn-edit:hover { 
-    background-color:rgba(97, 221, 109, 0.85);
-    color: white;
-    filter:drop-shadow(0.8px 0.8px 0.8px black) ;
+#btn-access:hover {
+    background-color: rgba(46, 95, 95, 0.85);
 }
 
-.btn-delete {
-    margin: 0 0 0 2%;
-    width: 30%;
-    height: 60%;
-    background-color:rgba(255, 5, 5, 0.75);
-    color: black;
-    border: 0px;
-    border-radius:10px;
-    font-size: larger;
-    font-weight: bold;
+#btn-edit {
+    background-color: rgb(65,151,68);
 }
 
-.btn-delete:hover { 
-    background-color:rgba(255, 5, 5, 90);
-    color: white;
-    filter:drop-shadow(0.8px 0.8px 0.8px black) ;
+#btn-edit:hover {
+    background-color: rgb(44,103,46);
 }
-/* FIM DO BLOCO DO PACIENTE */
-/* rodape */
 
+#btn-delete {
+    background-color: rgb(204,53,42);
+}
 
+#btn-delete:hover {
+    background-color: rgb(165,34,31);
+}
 
-/* FIM DA BASE DO SISTEMA */
+@media (max-width: 1024px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 200px;
+        padding: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+
+    .patients-list {
+        padding: 1.5rem;
+    }
+
+    .patients-list h2 {
+        font-size: 1.5rem;
+    }
+
+    .patient {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 0;
+    }
+
+    .patient-pic {
+        margin-bottom: 1rem;
+    }
+
+    .patient-info p {
+        font-size: 0.9rem;
+    }
+
+    .patient-actions {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 180px;
+        padding: 1.2rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+
+    .patients-list {
+        padding: 1rem;
+    }
+
+    .patients-list h2 {
+        font-size: 1.4rem;
+    }
+
+    .patient {
+        padding: 0.8rem 0;
+    }
+
+    .patient-info p {
+        font-size: 0.85rem;
+    }
+
+    .patient-actions .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #sidebar {
+        width: 60vw;
+        padding: 1rem;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+    }
+
+    .patients-list h2 {
+        font-size: 1.2rem;
+    }
+
+    .patient {
+        padding: 0.6rem 0;
+    }
+
+    .patient-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .patient-info p {
+        font-size: 0.8rem;
+    }
+
+    .patient-actions .btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.7rem;
+    }
+}

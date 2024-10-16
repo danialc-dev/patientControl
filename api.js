@@ -33,6 +33,11 @@ router.get('/cadastroPaciente', (req, res) => {
     res.render('CadastroPaciente/cadastroPaciente');
 });
 
+// Rota para renderizar a página de listagem de pacientes
+router.get('/listagemPaciente', (req, res) => {
+    res.render('ListagemPaciente/listagemPaciente');
+});
+
 // Rotas relacionadas a Pessoas
 router.post('/pessoas', pessoaController.criarPessoa);
 router.get('/buscar-pessoas', pessoaController.buscarPessoas);

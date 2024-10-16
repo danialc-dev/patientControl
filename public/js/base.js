@@ -53,7 +53,6 @@ async function renderCalendar() {
                     appointmentDiv.innerHTML = `
                         <span class="appointment-time">${horaOriginal}</span> 
                         <span class="appointment-name">${appointment.pessoa.nome}</span>
-                        <span class="appointment-price">R$ ${appointment.preco.toFixed(2)}</span> <!-- Adicionando o preço -->
                     `;
                     dayElement.appendChild(appointmentDiv);
                 });

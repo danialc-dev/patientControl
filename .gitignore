@@ -1,8 +1,8 @@
 node_modules/
-.env
+.idea
 database/database.js
+.env
 florescer-project.iml
 modules.xml
 php.xml
 vcs.xml
-workspace.xml

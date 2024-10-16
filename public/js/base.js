@@ -85,6 +85,7 @@ async function renderCalendar() {
                             appointmentElement.innerHTML = `
                         <p><strong>Horário:</strong> ${horaOriginal}</p>
                         <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                        <p><strong>CPF:</strong> ${appointment.pessoa.cpf}</p>
                         <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
                         <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p>
                         <hr>`;
@@ -120,6 +121,7 @@ async function renderCalendar() {
                                 appointmentElement.innerHTML = `
                             <p><strong>Horário:</strong> ${horaOriginal}</p>
                             <p><strong>Nome:</strong> ${appointment.pessoa.nome}</p>
+                            <p><strong>CPF:</strong> ${appointment.pessoa.cpf}</p>
                             <p><strong>Serviços:</strong> ${appointment.servicos.join(', ')}</p>
                             <p><strong>Preço:</strong> R$ ${appointment.preco.toFixed(2)}</p>
                             <hr>`;
@@ -370,7 +372,7 @@ function carregarResumoDoDia() {
 
                     agendamentoDiv.innerHTML = `
                     <h3>${hora}</h3>
-                    <p>${agendamento.pessoa.nome}</p>
+                    <p>${agendamento.pessoa.nome + ' - ' + agendamento.pessoa.cpf}</p>
                     <p><span class="red">${agendamento.servicos.join(', ')}</span></p>
                     <p>Valor do atendimento: <strong>R$${agendamento.preco.toFixed(2)}</strong></p>
                 `;

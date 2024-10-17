@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Removida concatenação com o preço dos agendamentos dentro dos blocos no calendário.">
-      <change afterPath="$PROJECT_DIR$/views/partials/aside.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/listagemPaciente.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/listagemPaciente.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/Home/home.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/Home/home.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/base/base.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/base/base.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Home/home.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/aside.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/aside.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,23 +54,23 @@
     &quot;assignee&quot;: &quot;danialc-dev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/danialc-dev/florescer-project.git&quot;,
-    &quot;accountId&quot;: &quot;ee7f1c75-8057-4be7-8611-68ebb0388f88&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/danialc-dev/florescer-project.git",
+    "accountId": "461050ff-c015-45c6-ae7f-727a635650e5"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;danialc-dev&quot;,
-    &quot;repository&quot;: &quot;florescer-project&quot;
+    "owner": "danialc-dev",
+    "repository": "florescer-project"
   }
-}</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/bin/php" />
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -142,6 +142,7 @@
       <workItem from="1728931416034" duration="2441000" />
       <workItem from="1729190020649" duration="125000" />
       <workItem from="1729190170745" duration="1035000" />
+      <workItem from="1729206641144" duration="1149000" />
     </task>
     <task id="LOCAL-00001" summary="Teste primeiro push">
       <option name="closed" value="true" />

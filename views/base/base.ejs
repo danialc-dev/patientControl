@@ -9,25 +9,10 @@
 </head>
 <body>
 
-<header id="header">
-    <h1>Patient Control</h1>
-</header>
+<%- include('../partials/header') %>
 
 <div class="layout">
-    <aside id="sidebar">
-        <div class="profile">
-            <img src="/img/img.png" alt="Foto de perfil de Leandro" class="profile-pic">
-            <p class="profile-name">Leandro</p>
-        </div>
-
-        <nav class="nav">
-            <a href="/cadastroPaciente" class="nav-link">Cadastro Paciente</a>
-            <a href="#" class="nav-link">Relatórios</a>
-            <a href="#" class="nav-link">Consultas</a>
-            <a href="/listagemPaciente" class="nav-link">Listar Pacientes</a>
-        </nav>
-    </aside>
-
+    <%- include('../partials/aside') %>
     <main id="main-content">
         <section class="daily-summary">
             <h2>Resumo do dia</h2>

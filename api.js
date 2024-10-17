@@ -34,7 +34,7 @@ router.get('/cadastroPaciente', (req, res) => {
 });
 
 // Rota para renderizar a página de listagem de pacientes
-router.get('/listagemPaciente', (req, res) => {
+router.get('/listagemPacientes', (req, res) => {
     res.render('ListagemPaciente/listagemPaciente');
 });
 

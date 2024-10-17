@@ -387,8 +387,6 @@ body {
     transform: translateY(-50%);
 }
 
-
-
 @media (max-width: 1024px) {
     .layout {
         flex-direction: column;

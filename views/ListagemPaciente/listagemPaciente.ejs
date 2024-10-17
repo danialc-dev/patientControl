@@ -1,73 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem Pacientes</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Home - Patient Control</title>
     <link rel="stylesheet" href="/css/listagemPaciente.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap"
-        rel="stylesheet">
 </head>
-
 <body>
 
-    <!-- BASE DO SISTEMA -->
+<header id="header">
+    <h1>Patient Control</h1>
+</header>
 
-    <header class="header">
-        <a href="" id="help"><span class="material-icons">help</span></a>
-        <h2 class="titulo1">Patient Control </h2>
-
-    </header>
-    <div class="barraLateral">
-        <a href="" class="profileBackground">
-            <p class="nome">
-                <img class="profilePic" src="/public/img/placeholder.jpg" alt="perfil">
-                <p class="">Tamiris</p>
-            </p>
-        </a>
-
-        <ul class="navegacao">
-
-            <li> <a class="navegacao1" href=""> Cadastro Paciente </a> </li>
-            <li> <a class="navegacao2" href=""> Relatórios </a> </li>
-            <li> <a class="navegacao3" href=""> Consultas </a> </li>
-        </ul>
-
-    </div>
-
-    <div class="principal">
-
-        <div class="titulo">
-            <h1>Pacientes Cadastrados</h1>
+<div class="layout">
+    <aside id="sidebar">
+        <div class="profile">
+            <img src="/img/img.png" alt="Foto de perfil de Leandro" class="profile-pic">
+            <p class="profile-name">Leandro</p>
         </div>
 
-        <div class="paciente">
-            <!-- Imagem do perfil do paciente -->
-            <img src="/public/img/Ellipse%203.png" alt="" id="img-patient">
-            <!-- Nome da pessoa -->
-            <div class="nome-paciente">
-                <a href=""> <p style="font-size: x-large;">Sonia Rodrigues | 58a</p> </a>
-                <!-- idade da pessoa à frente -->
-                <p style="font-size: medium;"> Registrada em 02/2023 | Ultima consulta em: 20/03/2024</p>
-                <!-- ultima consulta realizada: à frente -->
-            </div>
+        <nav class="nav">
+            <a href="/base" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Relatórios</a>
+            <a href="#" class="nav-link">Consultas</a>
+            <a href="/cadastroPaciente" class="nav-link">Cadastro Pacientes</a>
+        </nav>
+    </aside>
 
-            <div class="btn-box">
-                <!-- botoes -->
-                <button class="btn-acess">Acessar Relatórios</button>
-                <button class="btn-edit">Editar</button>
-                <button class="btn-delete">Excluir</button>
+    <div class="patients-list">
+        <h2>Pacientes Cadastrados</h2>
+
+        <div class="patient">
+            <img src="/img/img.png" alt="Foto de Sônia" class="patient-pic">
+            <div class="patient-info">
+                <p><strong>Sonia Rodrigues</strong> | 58a</p>
+                <p>Registrada desde 06/24 | última consulta em: 28/03/24</p>
+            </div>
+            <div class="patient-actions">
+                <button id="btn-access" class="btn">Acessar Relatórios</button>
+                <button id="btn-edit" class="btn">Editar</button>
+                <button id="btn-delete" class="btn">Excluir</button>
             </div>
         </div>
-
     </div>
+</div>
 
-    <!-- FIM DA BASE DO SISTEMA -->
-
+<script src="/js/base.js"></script>
 </body>
-
 </html>

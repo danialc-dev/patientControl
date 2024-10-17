@@ -59,7 +59,7 @@ exports.buscarAgendamentosPorData = async (req, res) => {
             },
             include: [{
                 model: Pessoa,
-                attributes: ['nome']
+                attributes: ['nome', 'cpf']
             }],
             order: [['data_hora', 'ASC']]
         });

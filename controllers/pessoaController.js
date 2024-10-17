@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const Pessoa = require('../models/pessoa');
-const { Op } = require('sequelize');
+const { Op, fn, col } = require('sequelize');
 
 // Função para criar uma pessoa fictícia
 exports.criarPessoaFicticia = async () => {
@@ -57,16 +57,26 @@ exports.criarPessoa = async (req, res) => {
 // Função para buscar pessoas
 exports.buscarPessoas = async (req, res) => {
     const { term } = req.query;
+
     try {
         const pessoas = await Pessoa.findAll({
             where: {
-                nome: { [Op.like]: `${term}%` }
+                [Op.or]: [
+                    { nome: { [Op.like]: `%${term}%` } },
+                    { cpf: { [Op.like]: `%${term}%` } }
+                ]
             },
+            attributes: [
+                'id',
+                [fn('CONCAT', col('nome'), ' - ', fn('COALESCE', col('cpf'), '')), 'nome']
+            ],
             limit: 10
         });
+
         res.json(pessoas);
     } catch (error) {
         console.error('Erro ao buscar pessoas:', error);
         res.status(404).send({ error: 'Erro ao buscar pessoas' });
     }
 };
+

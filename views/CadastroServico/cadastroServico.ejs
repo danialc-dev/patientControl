@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Servico - Patient Control</title>
+    <link rel="stylesheet" href="/css/cadastroServico.css">
+</head>
+<body>
+
+<%- include('../partials/header') %>
+
+<div class="layout">
+    <%- include('../partials/aside') %>
+
+    <div class="principal">
+        <div class="container-cadastro">
+            <form action="" class="form-cadastroServico">
+
+                <div class="titulo-cadastroServico">
+                    <h2>Cadastro de Procedimentos</h2>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="input-nome" name="nome" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="txtDescricao" name="descricao"  maxlength="500"></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button type="reset" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-save">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</form>
+
+</body>
+</html>

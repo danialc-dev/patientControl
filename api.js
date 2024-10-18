@@ -8,6 +8,11 @@ const agendamentoController = require('./controllers/agendamentoController');
 const baseController = require('./controllers/baseController');
 const authController = require('./controllers/authController');
 
+//Rota para a view cadastroServico
+router.get('/cadastroServicos', (req, res) => {
+    res.render('CadastroServico/cadastroServico');
+});
+
 // Rota para a view base
 router.get('/', (req, res) => {
     res.render('Login/Login');

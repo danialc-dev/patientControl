@@ -27,15 +27,17 @@ exports.criarPessoaFicticia = async () => {
 
 exports.criarPessoa = async (req, res) => {
     const { nome, email, senha, data_nascimento, cpf, telefone, hpp, hma, diag_clinic, diag_fisio, obs, medicines } = req.body;
+    const image = req.file ? req.file.buffer : null; // Certifique-se de que você está capturando a imagem
+
+    if (!image) {
+        return res.status(400).send({ error: 'Imagem é obrigatória' });
+    }
 
     try {
-        // const hashedPassword = bcrypt.hashSync(senha, bcrypt.genSaltSync(10));
-        // console.log('Senha criptografada:', hashedPassword); // Debug: Mostra a senha criptografada
-
         const novaPessoa = await Pessoa.create({
             nome,
             email,
-            // senha: hashedPassword,
+            senha, // Adicione a senha se necessário
             data_nascimento,
             cpf,
             telefone,
@@ -44,15 +46,17 @@ exports.criarPessoa = async (req, res) => {
             diag_clinic,
             diag_fisio,
             obs,
-            medicines
+            medicines,
+            image
         });
 
         res.status(201).json(novaPessoa);
     } catch (error) {
-        console.error('Erro ao criar nova pessoa:', error); // Mostra o erro no console
-        res.status(404).send({ error: 'Erro ao criar nova pessoa' }); // Corrigido para status 500
+        console.error('Erro ao criar nova pessoa:', error);
+        res.status(500).send({ error: 'Erro ao criar nova pessoa' });
     }
 };
+
 
 // Função para buscar pessoas
 exports.buscarPessoas = async (req, res) => {

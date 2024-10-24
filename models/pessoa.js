@@ -3,6 +3,10 @@ const connection = require('../database/database');
 
 // Define o modelo 'pessoa' no banco de dados
 const Pessoa = connection.define('pessoa', {
+    image: {
+        type: DataTypes.BLOB,
+        allowNull: false
+    },
     nome: {
         type: DataTypes.STRING,
         allowNull: false

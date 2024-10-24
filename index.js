@@ -4,6 +4,8 @@ const app = express();
 const apiRoutes = require('./api');  // Importa o arquivo de rotas
 require('./database/database');
 
+
+
 // Importa o testeController e chama as funções para criar a pessoa e o serviço fictícios
 const testeController = require('./controllers/testeController');
 (async () => {
@@ -21,6 +23,6 @@ app.use(express.static('public'));
 app.use(apiRoutes);
 
 // Inicia o servidor
-app.listen(8080, () => {
+app.listen(8082, () => {
     console.log('Servidor rodando na porta 8080...');
 });

@@ -27,6 +27,49 @@
 //
 // document.querySelector('.btn-anexar').addEventListener('click', anexarArquivos);
 
+//function anexar fotos perfil
+document.addEventListener('DOMContentLoaded', () => {
+    const image = document.getElementById('image');
+    const imageView = document.getElementById('image-view');
+    const occultInput = document.getElementById('occult-input');
+    const form = document.getElementsByClassName('form-cadastro');
+
+    image.addEventListener('change', uploadImage);
+
+    function uploadImage() {
+        if (image.files.length > 0) {
+            let imgLink = URL.createObjectURL(image.files[0]);
+            imageView.style.backgroundImage = `url(${imgLink})`;
+            occultInput.style.display = 'none';
+        } else {
+            console.error('Nenhuma imagem selecionada.');
+        }
+    }
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Previne o envio padrão do formulário
+
+        const formData = new FormData(form); // Cria um FormData a partir do formulário
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Pessoa criada:', data);
+            })
+            .catch(error => {
+                console.error('Erro ao criar pessoa:', error);
+            });
+    });
+});
+
 document.getElementById('input-cpf').addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, '');
     value = value.replace(/(\d{3})(\d)/, '$1.$2');

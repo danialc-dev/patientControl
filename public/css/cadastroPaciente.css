@@ -109,6 +109,52 @@ body {
 .input-group input:focus, .input-group textarea:focus {
     border-color: rgba(93, 155, 155, 0.85);
 }
+/*estilizando up de imagem*/
+#drop-area {
+    width: 14vh;
+    height: 14vh;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    border: 1px solid rgba(93, 155, 155, 0.5);
+    border-radius: 100%;
+    margin-bottom: 2vh;
+}
+
+.input-group-image {
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+
+}
+
+.icon {
+    margin-top: 3vh;
+}
+
+#image-view {
+    width:14vh;
+    height: 14vh;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+
+#image-view:hover{
+    color: #2e5f5f;
+}
+
+#image{
+    display: none;
+}
+
+#occult-input p {
+    font-size: small;
+    margin-top: 1vh;
+
+}
 
 .linha-insert {
     display: flex;

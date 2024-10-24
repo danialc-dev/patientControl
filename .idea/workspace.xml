@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Alteração feita na estilização do header e do aside.">
+      <change afterPath="$PROJECT_DIR$/public/img/icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pessoaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pessoaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pessoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/pessoa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/cadastroPaciente.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/cadastroPaciente.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/listagemPaciente.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/listagemPaciente.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/cadastroPaciente.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/cadastroPaciente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,22 +58,26 @@
     &quot;assignee&quot;: &quot;danialc-dev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/danialc-dev/florescer-project.git",
-    "accountId": "461050ff-c015-45c6-ae7f-727a635650e5"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/danialc-dev/florescer-project.git&quot;,
+    &quot;accountId&quot;: &quot;fe77d2ad-a3ff-4e85-803c-840fa11721ce&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "danialc-dev",
-    "repository": "florescer-project"
+    &quot;owner&quot;: &quot;danialc-dev&quot;,
+    &quot;repository&quot;: &quot;florescer-project&quot;
   }
-}]]></component>
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/views/CadastroPaciente/cadastroPaciente.ejs" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -80,29 +93,31 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dania/PhpstormProjects/florescer-project/public/css&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/uploadImagem&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dania/PhpstormProjects/florescer-project/public/img&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor.code.editing&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\public\img" />
       <recent name="C:\Users\dania\PhpstormProjects\florescer-project\public\css" />
       <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\public\img" />
       <recent name="D:\Arquivos de Programas\PhpStorm 2024.1.4\florescer-project\database" />
       <recent name="D:\Arquivos de Programas\PhpStorm 2024.1.4\florescer-project\models" />
       <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views" />
       <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views\Login" />
-      <recent name="C:\Users\dania\PhpstormProjects\florescer-project\views\EsqueciSenha" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -138,6 +153,9 @@
       <workItem from="1729190020649" duration="125000" />
       <workItem from="1729190170745" duration="1035000" />
       <workItem from="1729206641144" duration="2384000" />
+      <workItem from="1729357656580" duration="2749000" />
+      <workItem from="1729360496612" duration="9154000" />
+      <workItem from="1729636625617" duration="1101000" />
     </task>
     <task id="LOCAL-00001" summary="Teste primeiro push">
       <option name="closed" value="true" />

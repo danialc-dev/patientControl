@@ -1,37 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
     const image = document.getElementById('image');
     const imageView = document.getElementById('image-view');
-    const occultInput = document.getElementById('occult-input'); // Seleciona o texto e ícone
+    const occultInput = document.getElementById('occult-input');
     const form = document.querySelector('.form-cadastro');
+
+    // Função para exibir uma pop-up personalizada
+    function showPopup(message, color) {
+        const popup = document.createElement('div');
+        popup.classList.add('popup');
+        popup.textContent = message;
+        popup.style.backgroundColor = color;
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 100);
+
+        setTimeout(() => {
+            popup.classList.remove('show');
+            setTimeout(() => popup.remove(), 300);
+        }, 3000);
+    }
 
     // Função para visualizar a imagem selecionada
     image.addEventListener('change', () => {
         if (image.files.length > 1) {
-            alert('Por favor, selecione apenas uma imagem.');
-            image.value = ''; // Limpa o campo de arquivo
-            imageView.style.backgroundImage = ''; // Limpa a visualização da imagem
-            occultInput.style.visibility = 'visible'; // Mostra o texto novamente
+            showPopup('Por favor, selecione apenas uma imagem.', '#dcb004'); // Pop-up amarela
+            image.value = '';
+            imageView.style.backgroundImage = '';
+            occultInput.style.visibility = 'visible';
             return;
         }
 
         if (image.files.length > 0) {
             const imgLink = URL.createObjectURL(image.files[0]);
             imageView.style.backgroundImage = `url(${imgLink})`;
-            occultInput.style.visibility = 'hidden'; // Esconde o texto e ícone, mas mantém a área ocupada
+            occultInput.style.visibility = 'hidden';
             console.log('Imagem selecionada:', image.files[0]);
         } else {
-            console.error('Nenhuma imagem selecionada.');
-            occultInput.style.visibility = 'visible'; // Mostra o texto novamente se não houver imagem
+            showPopup('Nenhuma imagem selecionada.', '#dcb004'); // Pop-up amarela
+            occultInput.style.visibility = 'visible';
         }
     });
 
     // Função para enviar o formulário com a imagem e outros dados
     form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previne o envio padrão do formulário
+        event.preventDefault();
 
         const formData = new FormData();
-
-        // Adiciona todos os campos do formulário ao FormData
         const formElements = form.elements;
         for (let i = 0; i < formElements.length; i++) {
             const element = formElements[i];
@@ -40,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Adiciona a imagem ao FormData (apenas uma vez)
         if (image.files.length > 0) {
             formData.append('image', image.files[0]);
         } else {
@@ -55,18 +70,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const data = await response.json();
-                alert('Pessoa cadastrada com sucesso!');
-                form.reset(); // Limpa o formulário após o sucesso
-                imageView.style.backgroundImage = ''; // Limpa a visualização da imagem
-                occultInput.style.visibility = 'visible'; // Mostra o texto novamente
+                showPopup('Pessoa cadastrada com sucesso!', '#419744'); // Pop-up verde
+                form.reset();
+                imageView.style.backgroundImage = '';
+                occultInput.style.visibility = 'visible';
             } else {
                 const errorData = await response.json();
+                showPopup('Erro ao cadastrar pessoa: ' + errorData.error, '#dcb004'); // Pop-up amarela
                 console.error('Erro ao cadastrar pessoa:', errorData);
-                alert('Erro ao cadastrar pessoa: ' + errorData.error);
             }
         } catch (error) {
             console.error('Erro ao criar pessoa:', error);
-            alert('Erro ao cadastrar pessoa.');
+            showPopup('Erro ao cadastrar pessoa: ', '#dcb004'); // Pop-up amarela
         }
     });
 });

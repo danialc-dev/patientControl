@@ -27,6 +27,10 @@ const Pessoa = connection.define('pessoa', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    imagem: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     hpp: {
         type: DataTypes.STRING,
         allowNull: true

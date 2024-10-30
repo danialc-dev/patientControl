@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 
 // Importar controladores
 const pessoaController = require('./controllers/pessoaController');
@@ -7,6 +8,7 @@ const servicoController = require('./controllers/servicoController');
 const agendamentoController = require('./controllers/agendamentoController');
 const baseController = require('./controllers/baseController');
 const authController = require('./controllers/authController');
+const upload = multer();
 
 //Rota para a view cadastroServico
 router.get('/cadastroServicos', (req, res) => {
@@ -44,12 +46,13 @@ router.get('/listagemPaciente', (req, res) => {
 });
 
 // Rotas relacionadas a Pessoas
-router.post('/pessoas', pessoaController.criarPessoa);
+router.post('/api/pessoas', pessoaController.criarPessoa);
 router.get('/buscar-pessoas', pessoaController.buscarPessoas);
 router.get('/criar-pessoa-ficticia', pessoaController.criarPessoaFicticia);
 
 // Rotas relacionadas a Serviços
 router.get('/buscar-servicos', servicoController.buscarServicos);
+router.post('/criar-servicos', servicoController.criarServico);
 router.get('/criar-servico-ficticio', servicoController.criarServicoFicticio);
 
 // Rotas relacionadas a Agendamentos

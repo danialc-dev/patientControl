@@ -18,7 +18,6 @@ exports.criarPessoaFicticia = async () => {
             telefone: '(11) 99999-9999',
         });
 
-        console.log('Pessoa fictícia criada:', pessoa.nome);
     } catch (error) {
         console.error('Erro ao criar pessoa fictícia:', error);
     }

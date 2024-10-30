@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b31762f-e6d7-4f8b-b07d-94e1dede2649" name="Changes" comment="Alteração feita na estilização do header e do aside.">
+      <change afterPath="$PROJECT_DIR$/public/js/cadastroServico.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/servicoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/servicoController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/CadastroServico/cadastroServico.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/CadastroServico/cadastroServico.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/partials/aside.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/aside.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,22 +52,22 @@
     &quot;assignee&quot;: &quot;danialc-dev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/danialc-dev/florescer-project.git",
-    "accountId": "ec4a6a57-2751-4ba3-b09a-619deb954950"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/danialc-dev/florescer-project.git&quot;,
+    &quot;accountId&quot;: &quot;ec4a6a57-2751-4ba3-b09a-619deb954950&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "danialc-dev",
-    "repository": "florescer-project"
+    &quot;owner&quot;: &quot;danialc-dev&quot;,
+    &quot;repository&quot;: &quot;florescer-project&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5

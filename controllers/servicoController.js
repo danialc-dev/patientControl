@@ -16,6 +16,18 @@ exports.criarServicoFicticio = async () => {
     }
 };
 
+exports.criarServico = async (req, res) => {
+    const { nome, descricao } = req.body;
+
+    try {
+        const novoServico = await Servico.create({ nome, descricao });
+        res.status(201).json(novoServico);
+    } catch (error) {
+        console.error('Erro ao criar novo serviço:', error);
+        res.status(500).send({ error: 'Erro ao criar novo serviço' });
+    }
+};
+
 // Função para buscar serviços
 exports.buscarServicos = async (req, res) => {
     const { term } = req.query;

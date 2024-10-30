@@ -50,6 +50,7 @@ router.get('/criar-pessoa-ficticia', pessoaController.criarPessoaFicticia);
 
 // Rotas relacionadas a Serviços
 router.get('/buscar-servicos', servicoController.buscarServicos);
+router.post('/criar-servicos', servicoController.criarServico);
 router.get('/criar-servico-ficticio', servicoController.criarServicoFicticio);
 
 // Rotas relacionadas a Agendamentos

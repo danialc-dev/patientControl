@@ -112,28 +112,28 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#btn-access {
+.btn-access {
     background-color: rgba(93, 155, 155, 0.85);
 }
 
-#btn-access:hover {
+.btn-access:hover {
     background-color: rgba(46, 95, 95, 0.85);
 }
 
-#btn-edit {
-    background-color: rgb(65,151,68);
+.btn-edit {
+    background-color: rgb(65, 151, 68);
 }
 
-#btn-edit:hover {
-    background-color: rgb(44,103,46);
+.btn-edit:hover {
+    background-color: rgb(44, 103, 46);
 }
 
-#btn-delete {
-    background-color: rgb(204,53,42);
+.btn-delete {
+    background-color: rgb(204, 53, 42);
 }
 
-#btn-delete:hover {
-    background-color: rgb(165,34,31);
+.btn-delete:hover {
+    background-color: rgb(165, 34, 31);
 }
 
 @media (max-width: 1024px) {

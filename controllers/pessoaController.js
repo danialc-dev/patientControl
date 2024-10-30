@@ -66,6 +66,92 @@ exports.criarPessoa = [
     }
 ];
 
+exports.listarPessoas = async (req, res) => {
+    try {
+        const pessoas = await Pessoa.findAll({
+            attributes: ['id', 'nome', 'data_nascimento', 'imagem']
+        });
+
+        res.status(200).json(pessoas);
+    } catch (error) {
+        console.error('Erro ao listar pessoas:', error);
+        res.status(500).send({ error: 'Erro ao listar pessoas' });
+    }
+};
+
+// Função para buscar uma pessoa pelo ID
+exports.showPessoa = async (req, res) => {
+    try {
+        const pessoa = await Pessoa.findByPk(req.params.id);
+        if (!pessoa) {
+            return res.status(404).send({ error: 'Pessoa não encontrada' });
+        }
+        res.status(200).json(pessoa);
+    } catch (error) {
+        console.error('Erro ao buscar pessoa:', error);
+        res.status(500).send({ error: 'Erro ao buscar pessoa' });
+    }
+};
+
+// Função para atualizar uma pessoa pelo ID
+exports.atualizarPessoa = [
+    upload.single('image'), // Middleware para upload de imagem
+    async (req, res) => {
+        const pessoaId = req.params.id;
+
+        try {
+            const pessoa = await Pessoa.findByPk(pessoaId);
+            if (!pessoa) {
+                return res.status(404).send({ error: 'Pessoa não encontrada' });
+            }
+
+            // Atualiza os dados da pessoa
+            const dadosAtualizados = {
+                nome: req.body.nome,
+                email: req.body.email,
+                data_nascimento: req.body.data_nascimento,
+                cpf: req.body.cpf,
+                telefone: req.body.telefone,
+                hpp: req.body.hpp,
+                hma: req.body.hma,
+                diagnostico_clinico: req.body.diag_clinic,
+                diagnostico_fisio: req.body.diag_fisio,
+                observacoes: req.body.obs,
+                medicamentos: req.body.medicines,
+            };
+
+            // Se houver uma nova imagem, atualiza o campo de imagem
+            if (req.file) {
+                dadosAtualizados.imagem = req.file.path;
+            }
+
+            await pessoa.update(dadosAtualizados);
+
+            res.status(200).json(pessoa);
+        } catch (error) {
+            console.error('Erro ao atualizar pessoa:', error);
+            res.status(500).send({ error: 'Erro ao atualizar pessoa' });
+        }
+    }
+];
+
+exports.excluirPessoa = async (req, res) => {
+    try {
+        const pessoaId = req.params.id;
+        const pessoa = await Pessoa.findByPk(pessoaId);
+
+        if (!pessoa) {
+            return res.status(404).send({ error: 'Pessoa não encontrada' });
+        }
+
+        await pessoa.destroy();
+        res.status(200).send({ message: 'Pessoa excluída com sucesso' });
+    } catch (error) {
+        console.error('Erro ao excluir pessoa:', error);
+        res.status(500).send({ error: 'Erro ao excluir pessoa' });
+    }
+};
+
 // Função para criar uma pessoa fictícia
 exports.criarPessoaFicticia = async () => {
     try {

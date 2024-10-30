@@ -46,7 +46,11 @@ router.get('/listagemPaciente', (req, res) => {
 });
 
 // Rotas relacionadas a Pessoas
-router.post('/api/pessoas', pessoaController.criarPessoa);
+router.get('/pessoas', pessoaController.listarPessoas);
+router.post('/pessoas', pessoaController.criarPessoa);
+router.delete('/pessoas/:id', pessoaController.excluirPessoa);
+router.get('/pessoas/:id', pessoaController.showPessoa);
+router.patch('/pessoas/:id', pessoaController.atualizarPessoa);
 router.get('/buscar-pessoas', pessoaController.buscarPessoas);
 router.get('/criar-pessoa-ficticia', pessoaController.criarPessoaFicticia);
 

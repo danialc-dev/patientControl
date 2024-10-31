@@ -5,6 +5,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     const form = document.querySelector('.form-cadastro');
     const cancelButton = document.getElementById('btn-cancel'); // Botão de cancelar
 
+    // Função para exibir uma pop-up personalizada
+    function showPopup(message, color) {
+        const popup = document.createElement('div');
+        popup.classList.add('popup');
+        popup.textContent = message;
+        popup.style.backgroundColor = color;
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 100);
+
+        setTimeout(() => {
+            popup.classList.remove('show');
+            setTimeout(() => popup.remove(), 300);
+        }, 3000);
+    }
+
     // Variável global para pegar parâmetros da URL
     const urlParams = new URLSearchParams(window.location.search);
     const pessoaId = urlParams.get('id'); // Verifica se é edição
@@ -27,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Função para visualizar a imagem selecionada
     image.addEventListener('change', () => {
         if (image.files.length > 1) {
-            alert('Por favor, selecione apenas uma imagem.');
+            showPopup('Por favor, selecione apenas uma imagem.', '#dcb004'); // Pop-up amarela
             image.value = ''; // Limpa o campo de arquivo
             imageView.style.backgroundImage = ''; // Limpa a visualização da imagem
             occultInput.style.visibility = 'visible'; // Mostra o texto novamente
@@ -75,19 +93,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (response.ok) {
                 if (pessoaId) {
-                    alert('Pessoa atualizada com sucesso!');
+                    showPopup('Pessoa atualizada com sucesso!', '#419744'); // Pop-up verde
                 } else {
-                    alert('Pessoa criada com sucesso!');
+                    showPopup('Pessoa cadastrada com sucesso!', '#419744'); // Pop-up verde
                 }
-                window.location.href = '/listagemPaciente';
+                setTimeout(function() {
+                    window.location.href = '/listagemPaciente';
+                }, 3200);
             } else {
                 const errorData = await response.json();
                 console.error('Erro ao enviar pessoa:', errorData);
-                alert('Erro ao enviar pessoa: ' + errorData.error);
+                showPopup('Erro ao cadastrar pessoa: ' + errorData.error, '#dcb004'); // Pop-up amarela
             }
         } catch (error) {
             console.error('Erro ao enviar pessoa:', error);
-            alert('Erro ao enviar pessoa.');
+            showPopup('Erro ao cadastrar pessoa.', '#dcb004'); // Pop-up amarela
         }
     });
 

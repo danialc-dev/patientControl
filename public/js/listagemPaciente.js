@@ -1,3 +1,5 @@
+import {showPopup} from "./showPopup";
+
 document.addEventListener('DOMContentLoaded', () => {
     const patientContainer = document.getElementById('patient-container');
 
@@ -70,16 +72,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                alert('Pessoa excluída com sucesso!');
+                showPopup('Pessoa excluída com sucesso!', '#419744'); // Pop-up verde
                 buscarPacientes(); // Atualiza a lista após a exclusão
             } else {
                 const errorData = await response.json();
                 console.error('Erro ao excluir pessoa:', errorData);
-                alert('Erro ao excluir pessoa: ' + errorData.error);
+                showPopup('Erro ao excluir pessoa: ' + errorData.error, '#dcb004'); // Pop-up amarela
             }
         } catch (error) {
             console.error('Erro ao excluir pessoa:', error);
-            alert('Erro ao excluir pessoa.');
+            showPopup('Erro ao excluir pessoa.', '#dcb004'); // Pop-up amarela
         }
     }
 

@@ -1,3 +1,5 @@
+import {showPopup} from "./showPopup";
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.form-cadastroServico');
 
@@ -19,15 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const novoServico = await response.json();
-                alert('Serviço cadastrado com sucesso!');
+                showPopup('Serviço cadastrado com sucesso!', '#419744'); // Pop-up verde
                 form.reset(); // Limpa o formulário após o sucesso
             } else {
                 const error = await response.json();
-                alert('Erro ao cadastrar serviço: ' + error.error);
+                showPopup('Erro ao cadastrar serviço: ' + error.error, '#dcb004'); // Pop-up amarela
             }
         } catch (err) {
             console.error('Erro na requisição:', err);
-            alert('Erro ao cadastrar serviço.');
+            showPopup('Erro ao cadastrar serviço.', '#dcb004'); // Pop-up amarela
         }
     });
 });

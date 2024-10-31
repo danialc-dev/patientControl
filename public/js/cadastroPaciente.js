@@ -4,24 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const occultInput = document.getElementById('occult-input'); // Seleciona o texto e ícone
     const form = document.querySelector('.form-cadastro');
     const cancelButton = document.getElementById('btn-cancel'); // Botão de cancelar
-
-    // Função para exibir uma pop-up personalizada
-    function showPopup(message, color) {
-        const popup = document.createElement('div');
-        popup.classList.add('popup');
-        popup.textContent = message;
-        popup.style.backgroundColor = color;
-        document.body.appendChild(popup);
-
-        setTimeout(() => {
-            popup.classList.add('show');
-        }, 100);
-
-        setTimeout(() => {
-            popup.classList.remove('show');
-            setTimeout(() => popup.remove(), 300);
-        }, 3000);
-    }
+    import {showPopup} from "./showPopup";
 
     // Variável global para pegar parâmetros da URL
     const urlParams = new URLSearchParams(window.location.search);
